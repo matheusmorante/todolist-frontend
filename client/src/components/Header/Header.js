@@ -1,5 +1,7 @@
 import React from 'react';
-import defaultPerfil from '../assets/images/defaultperfil.png';
+import defaultPerfil from '../../assets/images/defaultperfil.png';
+
+
 
 export default function Header() {
     return (
