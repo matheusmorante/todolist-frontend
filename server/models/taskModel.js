@@ -7,7 +7,7 @@ const taskModel = {
             [userId, date, description, status]
         );
 
-        return result.rows[0]
+        return result.rows[0];
     },
     
     updateTask: async (date, description, status, id) => {
@@ -26,6 +26,11 @@ const taskModel = {
 
     getAllTasks: async () => {
         const result = await pool.query('SELECT * FROM tasks');
+        return result.rows;
+    },
+
+    getTasksByUserId: async (userId) => {
+        const result = await pool.query('SELECT * FROM tasks WHERE user_id = $1', [userId]);
         return result.rows;
     }
 };
