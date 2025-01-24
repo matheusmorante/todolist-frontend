@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     return (
         <form>
             <label>Email</label>
@@ -12,8 +12,7 @@ export default function LoginPage() {
             <input type='password' value={password} onChange={e => setPassword(e.target.value)}/>
             <button>Concluir</button>
             <p>
-                Ainda não se cadastrou?
-                <span onClick={() => {useNavigate('/register')}}>Cadastra-se</span>
+                Ainda não se cadastrou? <a href='/register'>Cadastrar-se</a>
             </p>
         </form>
         

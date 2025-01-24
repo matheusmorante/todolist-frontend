@@ -6,7 +6,7 @@ const taskController = {
             const {userId, date, description, status} = req.body;
             const newTask = await taskModel.addTask(userId, date, description, status);
 
-            res.status(201).json({ newTask })
+            res.status(201).json({ newTask });
         } catch (e) {
             console.error('Erro ao adicionar tarefa: ', e);
             res.status(500).json({ error: 'Erro ao adicionar tarefa'});
@@ -19,7 +19,7 @@ const taskController = {
             const { date, description, status } = req.body;
 
             const updatedTask = await taskModel.updateTask(date, description, status, id);
-            res.status(200).json(updatedTask.);
+            res.status(200).json(updatedTask);
         } catch (e) {
             console.error('Erro ao atualizar tarefa', e);
             res.status(500).json({ error: 'Erro ao atualizar atrefa'});
