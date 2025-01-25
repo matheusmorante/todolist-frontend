@@ -6,7 +6,7 @@ const userService = {
             const response = await api.post('/users/add', data);
             return response.data;
         } catch (e) {
-            throw 'Erro ao registrar usuário.';
+            throw e.response?.data?.error || 'Erro ao registrar usuário.';
         }
     },
 
@@ -14,8 +14,8 @@ const userService = {
         try {
             const response = await api.get(`/users/${id}`);
             return response.data; 
-        } catch (error) {
-            throw error.response?.data?.error || 'Erro ao buscar usuário.';
+        } catch (e) {
+            throw e.response?.data?.error || 'Erro ao buscar usuário.';
         }
     }
 };

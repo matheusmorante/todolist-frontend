@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import userService from '../../../server/services/taskService';
+import userService from '../services/userService';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -15,10 +15,6 @@ export default function RegisterPage() {
             return;
         }
 
-        const data = { name: username, email, password };
-        const user = userService.addTask(data)
-        console.log('Usuário adicionado com sucesso:', user);
-
         try {
             const data = { name: username, email, password };
             const user = await userService.addTask(data);
@@ -26,7 +22,6 @@ export default function RegisterPage() {
         } catch (error) {
             console.error('Erro:', error);
         }
-
     }
 
     return (
@@ -47,7 +42,7 @@ export default function RegisterPage() {
                 value={confirmPassword}
                 onChange={e => setConfirmPassword(e.target.value)}
             />
-            <button>Concluir</button>
+            <button onClick={submit}>Concluir</button>
 
             <p>
                 Já tem uma conta? <a href='/login'>Logar-se</a>

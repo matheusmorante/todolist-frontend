@@ -1,4 +1,3 @@
-
 import api from './api';
 
 const taskService = {
@@ -7,7 +6,7 @@ const taskService = {
             const response = await api.post('/tasks/add', data);
             return response.data;
         } catch (e) {
-            throw error.response?.data?.error || 'Erro ao registrar tarefa.';
+            throw e.response?.data?.error || 'Erro ao registrar tarefa.';
         }
     },
 
@@ -23,8 +22,9 @@ const taskService = {
     getTasksByUserId: async(userId) => {
         try {
             const response = await api.get(`/tasks/user/${userId}`)
-        } catch (error) {
-            throw error.response?.data?.error || 'Erro ao buscar tarefas por usuário.';
+            return response.data;
+        } catch (e) {
+            throw e.response?.data?.error || 'Erro ao buscar tarefas por usuário.';
         }
     }
 };
