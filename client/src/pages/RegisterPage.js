@@ -17,8 +17,8 @@ export default function RegisterPage() {
 
         try {
             const data = { name: username, email, password };
-            const user = await userService.addTask(data);
-            console.log('Usuário adicionado com sucesso:', user);
+            const user = await userService.addUser(data);
+            console.error('Usuário adicionado com sucesso:', user);
         } catch (error) {
             console.error('Erro:', error);
         }
