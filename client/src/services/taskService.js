@@ -12,7 +12,7 @@ const taskService = {
 
     getTask: async (id) => {
         try {
-            const response = await api.get(`/tasks/${id}`);
+            const response = await api.get(`tasks/${id}`);
             return response.data; 
         } catch (error) {
             throw error.response?.data?.error || 'Erro ao buscar tarefa.';

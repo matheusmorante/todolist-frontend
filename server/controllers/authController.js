@@ -7,11 +7,12 @@ const authController = {
             const { email, password } = req.body;
 
             const user = await userModel.getUserByEmail(email);
+
             if (!user) {
                 return res.status(400).json({ message: 'Usuário não encontrado' });
             }
 
-            const isMatch = verifyPassword(password, user.password);
+            const isMatch = await verifyPassword(password, user.password);
             if (!isMatch) {
                 return res.status(400).json({ message: 'Senha incorreta' });
             }
@@ -28,14 +29,15 @@ const authController = {
             const { name, email, password } = req.body;
 
             const existingUser = await userModel.getUserByEmail(email);
+
             if (existingUser) {
                 return res.status(400).json({ message: 'Email já está em uso' });
             }
 
-            const hashedPassword = hashPassword(password);
+            const hashedPassword = await hashPassword(password);
 
             const newUser = await userModel.addUser(name, email, hashedPassword);
-            res.status(201).json(newUser);
+            res.status(201).json({message: 'Usuário registrado com sucesso:', newUser});
         } catch (e) {
             console.error('Erro ao criar usuário:', e);
             res.status(500).json({ error: 'Erro ao criar usuário' })

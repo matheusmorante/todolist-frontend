@@ -18,17 +18,17 @@ const userModel = {
     },
 
     deleteUser: async (id) => {
-        const result = pool.query('DELETE FROM users WHERE id = $1', [id]);
+        const result = await pool.query('DELETE FROM users WHERE id = $1', [id]);
         return result.rowCount > 0;
     },
 
     getUserById: async (id) => {
-        const result = pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
         return result.rows[0];
     },
 
     getUserByEmail: async (email) => {
-        const result = pool.query('SELECT * FROM users WHERE email = $1', [email]);
+        const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
         return result.rows[0];
     },
 

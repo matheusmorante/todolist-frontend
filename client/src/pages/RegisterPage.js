@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import userService from '../services/userService';
+import authService from '../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const navigate = useNavigate();
 
     const submit = async (e) => {
         e.preventDefault();
@@ -17,8 +19,8 @@ export default function RegisterPage() {
 
         try {
             const data = { name: username, email, password };
-            const user = await userService.addUser(data);
-            console.error('Usuário adicionado com sucesso:', user);
+            await authService.register(data);
+            
         } catch (error) {
             console.error('Erro:', error);
         }
