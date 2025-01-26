@@ -1,6 +1,6 @@
 const pool = require('./db');
 const userModel = {
-    addUser: async (name, password) => {
+    addUser: async (name, email, password) => {
         const result = await pool.query(
             'INSERT INTO users(name, email, password) VALUES ($1, $2, $3) RETURNING *',
             [name, email, password]
@@ -8,7 +8,7 @@ const userModel = {
         return result.rows[0]
     },
 
-    updateUser: async (name, password, id) => {
+    updateUser: async (name, email, password, id) => {
         const result = await pool.query(
             'UPDATE users SET name = $1, email, $2 password = $3 WHERE id = $4 RETURNING *',
             [name, email, password, id]
