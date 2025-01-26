@@ -1,16 +1,7 @@
 import api from './api';
 
 const userService = {
-    addUser: async (data) => {
-        try {
-            const response = await api.post('/users/add', data);
-            return response.data;
-        } catch (e) {
-            throw e.response?.data?.error || 'Erro ao registrar usuário.';
-        }
-    },
-
-    getUser: async (id) => {
+    getUserById: async (id) => {
         try {
             const response = await api.get(`/users/${id}`);
             return response.data; 

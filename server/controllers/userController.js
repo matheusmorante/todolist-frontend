@@ -1,22 +1,10 @@
 const userModel = require('../models/userModel');
 
 const userController = {
-    addUser: async (req, res) => {
-        try {
-            const { name, email, password } = req.body;
-            const newUser = await userModel.addUser(name, email, password);
-            res.status(201).json(newUser);        
-        } catch (e) {
-            console.error('Erro ao criar usuário:', e);
-            res.status(500).json({ error: 'Erro ao criar usuário' })
-        }
-    },
-
     updateUser: async (req, res) => {
         try {
             const { id } = req.params;
             const { name, email, password } = req.body;
-
             const updatedUser = userModel.updateUser(name, email, password, id);
             res.status(200).json(updatedUser);
         } catch (e) {
@@ -41,7 +29,7 @@ const userController = {
         }
     },
 
-    getUser: async (req, res) => {
+    getUserById: async (req, res) => {
         try {
             const { id } = req.params;
             const user = userModel.getUser(id);

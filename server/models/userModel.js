@@ -1,4 +1,5 @@
 const pool = require('./db');
+
 const userModel = {
     addUser: async (name, email, password) => {
         const result = await pool.query(
@@ -21,8 +22,13 @@ const userModel = {
         return result.rowCount > 0;
     },
 
-    getUser: async (id) => {
+    getUserById: async (id) => {
         const result = pool.query('SELECT * FROM users WHERE id = $1', [id]);
+        return result.rows[0];
+    },
+
+    getUserByEmail: async (email) => {
+        const result = pool.query('SELECT * FROM users WHERE email = $1', [email]);
         return result.rows[0];
     },
 
