@@ -25,10 +25,10 @@ const authService = {
             
             if (response.status === 201) {
                 alert(response.data.message);
-                return response;
-            } else if (response.status === 400) {
-                alert(response.data.message || 'Erro ao registrar usuário');
-                return response;
+                return false;
+            } else {
+                alert(response.data.message);
+                return false;
             }
         
         } catch (e) {

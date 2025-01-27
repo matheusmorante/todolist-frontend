@@ -21,7 +21,7 @@ export default function RegisterPage() {
             const userData = { name: username, email, password };
             await authService.register(userData);
         } catch (error) {
-            console.error('Erro:', error, error.response.data.error);
+            console.error('Erro:', error);
         }
     }
 
