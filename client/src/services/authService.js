@@ -22,9 +22,10 @@ const authService = {
     register: async (data) => {
         try {
             const response = await api.post('/auth/register', data);
+            
             return response.data;
         } catch (e) {
-           console.error('Erro ao registrar usuário:', data, e);
+           console.error('Erro ao registrar usuário: ', e);
         }
     },
 }
