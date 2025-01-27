@@ -23,9 +23,17 @@ const authService = {
         try {
             const response = await api.post('/auth/register', data);
             
-            return response.data;
+            if (response.status === 201) {
+                alert(response.data.message);
+                return response;
+            } else if (response.status === 400) {
+                alert(response.data.message || 'Erro ao registrar usuário');
+                return response;
+            }
+        
         } catch (e) {
            console.error('Erro ao registrar usuário: ', e);
+           return false
         }
     },
 }

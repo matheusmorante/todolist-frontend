@@ -18,11 +18,10 @@ export default function RegisterPage() {
         }
 
         try {
-            const data = { name: username, email, password };
-            await authService.register(data);
-            
+            const userData = { name: username, email, password };
+            await authService.register(userData);
         } catch (error) {
-            console.error('Erro:', error);
+            console.error('Erro:', error, error.response.data.error);
         }
     }
 

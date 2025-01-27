@@ -32,7 +32,7 @@ const taskController = {
             const deletedTask = await taskModel.deleteTask(id);
 
             if(deletedTask) {
-                res.status(204).send();
+                res.status(204).send();deletedTask
             } else {
                 res.status(404),json({ error: 'Tarefa não encontrada'})
             }

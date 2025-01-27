@@ -17,4 +17,4 @@ app.get('*', (req, res) => {
 });
 
 const PORT = 5000;
-app.listen(PORT, () => (console.log('Server rodando https://localhost:'+PORT)));
+app.listen(PORT, () => (console.log('Server rodando http://localhost:'+PORT)));
