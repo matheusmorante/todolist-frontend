@@ -2,17 +2,17 @@ import api from "./api"
 
 const authService = {
     
-    login: () => {
+    login: async (data) => {
         try {
-            const response = api.post('/auth/login');
+            const response = await api.post('/auth/login', data);
 
             if (response.ok) {
-                alert('Login bem-sucedido!');
-                return true
-            }  else {
-                alert('Erro no login. Verifique suas credenciais.');
-                return false;
-            }
+                alert(response.data.message);
+                return true;
+            } 
+
+            alert(response.data.message);
+            return false;
         } catch (e) {
             console.error('Login error:', e);
             return false;
@@ -25,11 +25,10 @@ const authService = {
             
             if (response.status === 201) {
                 alert(response.data.message);
-                return false;
-            } else {
-                alert(response.data.message);
-                return false;
+                return;
             }
+                alert(response.data.message);
+
         
         } catch (e) {
            console.error('Erro ao registrar usuário: ', e);

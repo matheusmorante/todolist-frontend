@@ -9,12 +9,13 @@ export default function LoginPage() {
 
     const submit = async (e) =>{
         e.preventDefault();
+        const login = await authService.login({ email, password });
 
-        const loginSuccess = await authService.login();
-
-        if(loginSuccess) {
+        if(login){
             navigate('/home')
         }
+
+    
     }
 
     return (
