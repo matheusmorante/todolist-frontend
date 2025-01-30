@@ -9,7 +9,11 @@ export default function LoginPage() {
 
     const submit = async (e) =>{
         e.preventDefault();
-        await authService.login({ login, password });
+        const loggedIn = await authService.login({ login, password });
+
+        if(loggedIn) {
+            navigate('/')
+        }
     
     }
 

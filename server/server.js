@@ -2,8 +2,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
-const checkAuth = require('./middlewares/authMiddleware');
-
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const authRoutes = require('./routes/authRoutes');
@@ -23,7 +21,7 @@ app.use(
     cookie: {
       httpOnly: true, // Protege contra XSS
       secure: false, 
-      maxAge: 1000, 
+      maxAge: 1000 * 10, 
     },
   })
 );
@@ -32,7 +30,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 
-app.get('*', checkAuth, (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 

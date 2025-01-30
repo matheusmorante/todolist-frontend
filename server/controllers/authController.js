@@ -2,6 +2,21 @@ const userModel = require('../models/userModel');
 const { hashPassword, verifyPassword } = require('../utils/bcryptUtils');
 
 const authController = {
+
+    getUserId: (req, res) => {
+        try {
+            const userId = req.session.userId;
+            if (userId) {
+                return res.status(200).json({ id: userId });
+            }
+            res.status(401).json({ message: 'Usuário não autenticado' });
+        } catch (e) {
+            console.error('Erro ao obter ID do usuário:', e);
+            res.status(500).json({ error: 'Erro interno no servidor' });
+        }
+        
+    },
+
     login: async (req, res) => {
         try {
             const { login, password } = req.body;
@@ -19,17 +34,13 @@ const authController = {
 
             const isMatch = await verifyPassword(password, user.password);
             if (!isMatch) {
-               
                 return res.status(401).json({ message: 'Senha incorreta' });
-               
             }
-
-           
 
             res.status(201).json({ message: 'Login bem-sucedido' });
         } catch (e) {
             console.error('Erro ao registrar usuário:', e);
-            res.status(500).json({ error: 'Erro ao registrar usuário' })
+            res.status(500).json({ error: 'Erro ao registrar usuário' });
         }
     },
 
