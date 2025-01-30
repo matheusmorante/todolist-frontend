@@ -3,25 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import authService from '../services/authService';
 
 export default function LoginPage() {
-    const [email, setEmail] = useState('');
+    const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const submit = async (e) =>{
         e.preventDefault();
-        const login = await authService.login({ email, password });
-
-        if(login){
-            navigate('/home')
-        }
-
+        await authService.login({ login, password });
     
     }
 
     return (
         <form>
-            <label>Email</label>
-            <input type='email' value={email} onChange={e => setEmail(e.target.value)}/>
+            <label>Nome de Usuário/Email</label>
+            <input type='text' value={login} onChange={e => setLogin(e.target.value)}/>
             <label>Senha</label>
             <input type='password' value={password} onChange={e => setPassword(e.target.value)}/>
             <button onClick={submit}>Concluir</button>

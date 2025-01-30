@@ -6,7 +6,7 @@ const taskService = {
             const response = await api.post('/tasks/add', data);
             return response.data;
         } catch (e) {
-            throw e.response?.data?.error || 'Erro ao registrar tarefa.';
+            alert(e.response.data.message);
         }
     },
 
@@ -15,16 +15,16 @@ const taskService = {
             const response = await api.get(`tasks/${id}`);
             return response.data; 
         } catch (error) {
-            throw error.response?.data?.error || 'Erro ao buscar tarefa.';
+            alert(e.response.data.message);
         }
     },
 
-    getTasksByUserId: async(userId) => {
+    getTasksByUserId: async (userId) => {
         try {
             const response = await api.get(`/tasks/user/${userId}`)
             return response.data;
         } catch (e) {
-            throw e.response?.data?.error || 'Erro ao buscar tarefas por usuário.';
+            alert(e.response.data.message);
         }
     }
 };

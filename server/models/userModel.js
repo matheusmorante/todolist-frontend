@@ -47,12 +47,15 @@ const userModel = {
         }
     },
 
-    getUserByEmail: async (email) => {
+    getUserByNameOrEmail: async (data) => {
         try {
-            const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+            const result = await pool.query(
+                'SELECT * FROM users WHERE name = $1 OR email = $1',
+                 [data]
+            );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao buscar usuário por e-mail:', error);
+            console.error('Erro ao buscar usuário por nome ou e-mail:', error);
             throw error;
         }
     },
