@@ -1,15 +1,27 @@
 import Header from "../components/Header";
-import { useEffect } from "react";
+import {useState,  useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import authService from "../services/authService";
+import Tasks from "../components/Tasks";
+import Perfil from "../components/Perfil";
 
 export default function HomePage() {
     const navigate = useNavigate();
+    const [ loading, setLoading ] = useState(true);
+    const [ user, setUser ] = useState('');
 
-    useEffect( async () => {
+    useEffect(() => {
         const checkAuth = async () => {
-            const userId = await authService.getUserId(); // Corrigido: agora espera a resposta
-            if (!userId) {
+            try {
+                const user = await authService.getUser();
+
+                if (!user) {
+                    return navigate('/login');
+                } 
+
+                setUser(user);
+            } catch (error) {
+                console.error('Erro ao verificar autenticação:', error);
                 navigate('/login');
             }
         };
@@ -17,7 +29,15 @@ export default function HomePage() {
         checkAuth();
     }, [navigate])
 
+ 
+
     return (
-        <Header />
+        <>
+            <Header />
+            <Tasks/>
+            <Perfil 
+                user={user}
+            />
+        </>
     )
 }

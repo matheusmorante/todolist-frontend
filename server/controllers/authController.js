@@ -2,12 +2,10 @@ const userModel = require('../models/userModel');
 const { hashPassword, verifyPassword } = require('../utils/bcryptUtils');
 
 const authController = {
-
-    getUserId: (req, res) => {
+    getUser: async (req, res) => {
         try {
-            const userId = req.session.userId;
-            if (userId) {
-                return res.status(200).json({ id: userId });
+            if (req.session.user) {
+                return res.status(200).json(req.session.user);
             }
             res.status(401).json({ message: 'Usuário não autenticado' });
         } catch (e) {
@@ -36,6 +34,9 @@ const authController = {
             if (!isMatch) {
                 return res.status(401).json({ message: 'Senha incorreta' });
             }
+
+            req.session.user = { id: user.id, name: user.name, email: user.email };
+            console.log("Sessão salva:", req.session.user);
 
             res.status(201).json({ message: 'Login bem-sucedido' });
         } catch (e) {

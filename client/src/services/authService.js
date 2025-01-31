@@ -1,19 +1,18 @@
 import api from "./api"
 
 const authService = {
-    getUserId: async () => {
+    getUser: async () => {
         try {
-            const response = await api.get('/auth/userId');
-            return response.data.userId;
+            const response = await api.get('/auth/user');
+            console.log('usuario', response.data);
+            return response.data;
         } catch (error) {
             console.error('Erro ao buscar ID do usuário:', error);
             return null;
         }
-            
     },
     
     login: async (data) => {
-        console.log('Função login chamada com os dados:', data);
         try {
             const response = await api.post('/auth/login', data);
 
