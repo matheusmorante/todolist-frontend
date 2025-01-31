@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React from 'react';
 
 export default function Task({ task }) {
@@ -16,4 +14,3 @@ export default function Task({ task }) {
         
     )
 }
->>>>>>> 91a5659 (sdds222s)
