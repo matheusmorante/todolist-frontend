@@ -4,7 +4,6 @@ const authService = {
     getUser: async () => {
         try {
             const response = await api.get('/auth/user');
-            console.log('usuario', response.data);
             return response.data;
         } catch (error) {
             console.error('Erro ao buscar ID do usuário:', error);
@@ -15,7 +14,6 @@ const authService = {
     login: async (data) => {
         try {
             const response = await api.post('/auth/login', data);
-
             alert(response.data.message);
             return true;
         } catch (e) {

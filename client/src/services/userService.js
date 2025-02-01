@@ -6,7 +6,15 @@ const userService = {
             const response = await api.get(`/users/${id}`);
             return response.data; 
         } catch (e) {
-            throw e.response?.data?.error || 'Erro ao buscar usuário.';
+            throw e.response.data.error;
+        }
+    },
+    getUserByEmail: async (email) => {
+        try {
+            const response = await api.get(`/users/${email}`);
+            return response.data; 
+        } catch (e) {
+            throw e.response.data.error;
         }
     }
 };

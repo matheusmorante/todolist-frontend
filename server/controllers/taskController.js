@@ -42,6 +42,15 @@ const taskController = {
         }
     },
 
+    getAllTasks: async (req, res) => {
+        try {
+            const tasks = await taskModel.getAllTasks();
+            res.status(201).json(tasks);
+        } catch (e) {
+            console.error('Erro ao buscar todas as tarefas')
+        }
+    },
+
     getTasksByUserId: async (req, res) => {
         try {
             const { userId } = req.params;
