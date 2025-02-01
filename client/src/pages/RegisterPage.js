@@ -13,13 +13,17 @@ export default function RegisterPage() {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            console.log('As senhas não coicidem');
+            alert('As senhas não coicidem');
             return;
         }
 
         try {
             const userData = { name: username, email, password };
-            await authService.register(userData);
+            const register = await authService.register(userData);
+
+            if(register) {
+                navigate('/login');
+            }
         } catch (error) {
             console.error('Erro:', error);
         }

@@ -11,7 +11,7 @@ const authService = {
             return null;
         }
     },
-    
+
     login: async (data) => {
         try {
             const response = await api.post('/auth/login', data);
@@ -28,11 +28,8 @@ const authService = {
         try {
             const response = await api.post('/auth/register', data);
 
-            if (response.ok) {
-                alert(response.data.message);
-                return;
-            }
-
+            alert(response.data.message);
+            return true;
         } catch (e) {
             alert(e.response.data.message);
             return false

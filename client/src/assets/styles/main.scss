@@ -1,11 +1,18 @@
-@import 'header';
-@import 'variables';
-@import 'login_page';
+@import './components/header';
+@import './base/variables';
+@import './components/login_page';
 
 body {
-    display: flex;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    .app {
+        width: 100%;
+        & > * {
+            padding: 0 10%;
+            display: flex;
+            justify-content: center;
+        }
+    }
 }
-body >* {
-    padding:0 20%;
-}
+
