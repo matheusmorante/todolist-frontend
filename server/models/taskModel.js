@@ -12,7 +12,6 @@ const taskModel = {
 
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao adicionar tarefa:', error);
             throw error;
         }
     },
@@ -26,7 +25,6 @@ const taskModel = {
 
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao atualizar tarefa:', error);
             throw error;
         }
     },
@@ -36,7 +34,6 @@ const taskModel = {
             const result = await pool.query('DELETE FROM tasks WHERE id = $1', [id]);
             return result.rowCount > 0;
         } catch (error) {
-            console.error('Erro ao deletar todas as tarefas:', error);
             throw error;
         }
     },
@@ -46,7 +43,6 @@ const taskModel = {
             const result = await pool.query('SELECT * FROM tasks');
             return result.rows;
         } catch (error) {
-            console.error('Erro ao buscar todos as tarefas:', error);
             throw error;
         }
     },
@@ -56,7 +52,6 @@ const taskModel = {
             const result = await pool.query('SELECT * FROM tasks WHERE user_id = $1', [userId]);
             return result.rows;
         } catch (error) {
-            console.error('Erro ao buscar tarefas por id:', error);
             throw error;
         }
     }

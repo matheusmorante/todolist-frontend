@@ -8,9 +8,8 @@ const authController = {
                 return res.status(200).json(req.session.user);
             }
             res.status(401).json({ message: 'Usuário não autenticado' });
-        } catch (e) {
-            console.error('Erro ao obter ID do usuário:', e);
-            res.status(500).json({ error: 'Erro interno no servidor' });
+        } catch (error) {
+            res.next(error)
         }
         
     },
@@ -39,9 +38,8 @@ const authController = {
             console.log("Sessão salva:", req.session.user);
 
             res.status(201).json({ message: 'Login bem-sucedido' });
-        } catch (e) {
-            console.error('Erro ao registrar usuário:', e);
-            res.status(500).json({ error: 'Erro ao registrar usuário' });
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -62,9 +60,8 @@ const authController = {
             res.status(201).json({
                 message: 'Usuário registrado com sucesso!'
             });
-        } catch (e) {
-            console.error('Erro ao registrar usuário:', e);
-            res.status(500).json({ error: 'Erro ao registrar usuário' })
+        } catch (error) {
+            res.next(error)
         }
     },
 }

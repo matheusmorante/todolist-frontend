@@ -7,9 +7,8 @@ const userController = {
             const { name, email, password } = req.body;
             const updatedUser = userModel.updateUser(name, email, password, id);
             res.status(200).json(updatedUser);
-        } catch (e) {
-            console.error('Erro ao editar usuário:', e);
-            res.status(500).json({ error: 'Erro ao editar usuário'});
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -24,8 +23,7 @@ const userController = {
                 res.status(404).json({ message: 'Usuário não encontrado' });
             }
         } catch (error) {
-            console.error('Erro ao deletar usuário:', error);
-            res.status(500).json({ error: 'Erro ao deletar usuário' });
+            res.next(error)
         }
     },
 
@@ -34,9 +32,8 @@ const userController = {
             const { id } = req.params;
             const user = userModel.getUser(id);
             res.status(200).json(user);
-        } catch (e) {
-            console.error('Erro ao buscar usuário: ', e);
-            res.status(500).json({ error: 'Erro ao buscar usua´rio'});
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -44,9 +41,8 @@ const userController = {
         try {
             const users = userModel.getAllUsers();
             res.status(200).json(users)
-        } catch (e) {
-            console.error('Erro ao buscar todos os usuários:', e);
-            res.status(500).json({ error: 'Erro ao buscar todos os usuários'});
+        } catch (error) {
+            res.next(error)
         }
     }
 };

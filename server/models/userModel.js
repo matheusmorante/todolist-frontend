@@ -9,8 +9,7 @@ const userModel = {
             );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao adicionar usuário:', error);
-            throw error;  // Rethrow the error to be handled by the caller
+            throw error;  
         }
     },
 
@@ -32,7 +31,6 @@ const userModel = {
             const result = await pool.query('DELETE FROM users WHERE id = $1', [id]);
             return result.rowCount > 0;
         } catch (error) {
-            console.error('Erro ao deletar usuário:', error);
             throw error;
         }
     },
@@ -42,7 +40,6 @@ const userModel = {
             const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao buscar usuário por ID:', error);
             throw error;
         }
     },
@@ -55,7 +52,6 @@ const userModel = {
             );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao buscar usuário por nome ou e-mail:', error);
             throw error;
         }
     },
@@ -65,7 +61,6 @@ const userModel = {
             const result = await pool.query('SELECT * FROM users');
             return result.rows;
         } catch (error) {
-            console.error('Erro ao buscar todos os usuários:', error);
             throw error;
         }
     }

@@ -7,9 +7,8 @@ const taskController = {
             const newTask = await taskModel.addTask(userId, date, description, status);
 
             res.status(201).json({ newTask });
-        } catch (e) {
-            console.error('Erro ao adicionar tarefa: ', e);
-            res.status(500).json({ error: 'Erro ao adicionar tarefa'});
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -20,9 +19,8 @@ const taskController = {
 
             const updatedTask = await taskModel.updateTask(date, description, status, id);
             res.status(200).json(updatedTask);
-        } catch (e) {
-            console.error('Erro ao atualizar tarefa', e);
-            res.status(500).json({ error: 'Erro ao atualizar atrefa'});
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -36,9 +34,8 @@ const taskController = {
             } else {
                 res.status(404),json({ error: 'Tarefa não encontrada'})
             }
-        } catch (e) {
-            console.error('Erro ao deletar tarefa: ', e);
-            res.status(500).json({ error: 'Erro ao deletar tarefa'})
+        } catch (error) {
+            res.next(error)
         }
     },
 
@@ -47,7 +44,7 @@ const taskController = {
             const tasks = await taskModel.getAllTasks();
             res.status(201).json(tasks);
         } catch (e) {
-            console.error('Erro ao buscar todas as tarefas')
+            res.next(e)
         }
     },
 
@@ -56,8 +53,8 @@ const taskController = {
             const { userId } = req.params;
             const tasks = await taskModel.getTasksByUserId(userId);
             res.status(201).json(tasks);
-        } catch (e) {
-            console.error('Erro ao buscar todas as tarefas')
+        } catch (error) {
+            res.next(error)
         }
     }
 };
