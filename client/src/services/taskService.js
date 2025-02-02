@@ -8,7 +8,6 @@ const taskService = {
             const userId = sessionUser.data.id;
 
             const newData = { ...data, date: dataNow(), userId};
-            console.log(newData);
             const response = await api.post('/tasks/add', newData);
             return response.data;
         } catch (e) {
@@ -21,7 +20,7 @@ const taskService = {
             const response = await api.get(`/tasks/${id}`);
             return response.data; 
         } catch (error) {
-            alert('erro');
+            alert('Erro ao buscar tarefa');
         }
     },
 
@@ -30,7 +29,7 @@ const taskService = {
             const response = await api.get(`/tasks/user/${userId}`)
             return response.data;
         } catch (e) {
-            alert('erro');
+            alert('Erro ao buscar tarefas por usuário');
         }
     }
 };

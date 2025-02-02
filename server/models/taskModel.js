@@ -3,7 +3,7 @@ const pool = require('./db');
 const taskModel = {
     addTask: async (userId, date, description, status) => {
         try {
-            const result = pool.query(
+            const result = await pool.query(
                 `INSERT INTO tasks(user_id, date, description, status) 
                 VALUES ($1, $2, $3, $4)
                 RETURNING *`,
@@ -18,7 +18,7 @@ const taskModel = {
 
     updateTask: async (date, description, status, id) => {
         try {
-            const result = pool.query(
+            const result = await pool.query(
                 'UPDATE tasks SET date = $1, description = $2, status = $3 WHERE id = $4',
                 [date, description, status, id]
             );
