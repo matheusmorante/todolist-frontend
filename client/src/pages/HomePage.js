@@ -8,18 +8,17 @@ import Perfil from "../components/Perfil";
 export default function HomePage() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState('');
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         const checkAuth = async () => {
-            const user = await authService.getUser();
+            const user = await authService.getSessionUser();
 
             if (!user) {
                 return navigate('/login');
             }
 
             setUser(user);
-
         };
 
         checkAuth();
@@ -30,7 +29,7 @@ export default function HomePage() {
     return (
         <>
             <Header />
-            <Tasks />
+            <Tasks userId={user.id}/>
             <Perfil
                 user={user}
             />

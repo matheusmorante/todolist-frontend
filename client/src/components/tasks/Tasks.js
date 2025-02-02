@@ -3,19 +3,21 @@ import Task from './Task';
 import taskService from '../../services/taskService'
 import AddTask from './addTask';
 
-export default function Tasks() {
+export default function Tasks({ userId }) {
     const [ tasks, setTasks ] = useState([]);
     const [ filter, setFilter ] = useState('');
 
     useEffect(() => {
         const getAllTasks = async () => {
-            const data = await taskService.getAllTasks();
+            const data = await taskService.getTasksByUserId(userId);
             if(data) {
                 setTasks(data)
+            } else {
+                setTasks([])
             }
         }
         getAllTasks()
-    })
+    }, [])
 
     return (
         <section>

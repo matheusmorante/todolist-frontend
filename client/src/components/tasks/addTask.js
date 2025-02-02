@@ -6,7 +6,7 @@ export default function AddTask() {
 
     const submit = async () => {
         const data = { description }
-        await taskService(data)
+        await taskService.addTask(data)
     }
 
     return (

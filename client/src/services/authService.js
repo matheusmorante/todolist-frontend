@@ -1,12 +1,12 @@
 import api from "./api"
 
 const authService = {
-    getUser: async () => {
+    getSessionUser: async () => {
         try {
-            const response = await api.get('/auth/user');
+            const response = await api.get('/session/user');
             return response.data;
         } catch (error) {
-            console.error('Erro ao buscar ID do usuário:', error);
+            console.error('Erro ao buscar usuário da sessao:', error);
             return null;
         }
     },
@@ -17,7 +17,7 @@ const authService = {
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert(e.response.data.message);
+            alert('Não foi possivel realizar login');
             return false;
         }
     },
@@ -25,11 +25,11 @@ const authService = {
     register: async (data) => {
         try {
             const response = await api.post('/auth/register', data);
-
+            
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert(e.response.data.message);
+            alert('Não foi possivel realizar cadastro');
             return false
         }
     },
