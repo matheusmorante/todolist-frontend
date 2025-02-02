@@ -1,6 +1,7 @@
-import React, { useState,  useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Task from './Task';
 import taskService from '../../services/taskService'
+import AddTask from './addTask';
 
 export default function Tasks() {
     const [ tasks, setTasks ] = useState([]);
@@ -8,15 +9,14 @@ export default function Tasks() {
 
     useEffect(() => {
         const getAllTasks = async () => {
-            const tasksData = await taskService.getAllTasks();
-            if(tasksData) {
-                setTasks(tasksData)
+            const data = await taskService.getAllTasks();
+            if(data) {
+                setTasks(data)
             }
         }
         getAllTasks()
     })
 
-  
     return (
         <section>
             <h1>Tarefas</h1>
@@ -29,13 +29,8 @@ export default function Tasks() {
                 <i class="bi bi-sort-alpha-down"/>
             </div>
             <table>
-                <tr>
-                    <td>
-                        <input/>
-                    </td>
-                    <td><a className='bi bi-check' onClick={submit}/></td>
-                </tr>
-                { tasks.map(task => <Task  task={ task }/>) }
+                <AddTask />
+                { tasks.map(task => <Task task={ task }/>) }
             </table>
         </section>
     )

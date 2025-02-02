@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import taskService from '../../services/taskService'
 
-export default function addTask() {
-    const [description, setDescription] = useState('');
+export default function AddTask() {
+    const [ description, setDescription ] = useState('');
 
     const submit = async () => {
-        const data = { date, description }
+        const data = { description }
         await taskService(data)
     }
 
