@@ -1,13 +1,13 @@
 const pool = require('./db');
 
 const taskModel = {
-    addTask: async (date, description, status) => {
+    addTask: async (userId, date, description, status) => {
         try {
             const result = pool.query(
-                `INSERT INTO tasks(userId, date, description) 
-                VALUES ($1, $2, $3)
+                `INSERT INTO tasks(user_id, date, description, status) 
+                VALUES ($1, $2, $3, $4)
                 RETURNING *`,
-                [userId, date, description]
+                [userId, date, description, status]
             );
 
             return result.rows[0];
@@ -33,15 +33,6 @@ const taskModel = {
         try {
             const result = await pool.query('DELETE FROM tasks WHERE id = $1', [id]);
             return result.rowCount > 0;
-        } catch (error) {
-            throw error;
-        }
-    },
-
-    getAllTasks: async () => {
-        try {
-            const result = await pool.query('SELECT * FROM tasks');
-            return result.rows;
         } catch (error) {
             throw error;
         }

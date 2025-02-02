@@ -1,18 +1,18 @@
 const taskModel = require('../models/taskModel')
 
 const taskController = {
-    addTask: async (req, res) => {
+    addTask: async (req, res, next) => {
         try {
-            const {userId, date, description, status} = req.body;
-            const newTask = await taskModel.addTask(userId, date, description, status);
+            const {userId, date, description} = req.body;
+            const newTask = await taskModel.addTask(userId, date, description);
 
             res.status(201).json({ newTask });
         } catch (error) {
-            res.next(error)
+            next(error)
         }
     },
 
-    updateTask: async (req, res) => {
+    updateTask: async (req, res, next) => {
         try {
             const { id } = req.params;
             const { date, description, status } = req.body;
@@ -20,11 +20,11 @@ const taskController = {
             const updatedTask = await taskModel.updateTask(date, description, status, id);
             res.status(200).json(updatedTask);
         } catch (error) {
-            res.next(error)
+            next(error)
         }
     },
 
-    deleteTask: async (req, res) => {
+    deleteTask: async (req, res, next) => {
         try {
             const { id } = req.params;
             const deletedTask = await taskModel.deleteTask(id);
@@ -35,26 +35,17 @@ const taskController = {
                 res.status(404),json({ error: 'Tarefa não encontrada'})
             }
         } catch (error) {
-            res.next(error)
+            next(error)
         }
     },
 
-    getAllTasks: async (req, res) => {
-        try {
-            const tasks = await taskModel.getAllTasks();
-            res.status(201).json(tasks);
-        } catch (e) {
-            res.next(e)
-        }
-    },
-
-    getTasksByUserId: async (req, res) => {
+    getTasksByUserId: async (req, res, next) => {
         try {
             const { userId } = req.params;
             const tasks = await taskModel.getTasksByUserId(userId);
             res.status(201).json(tasks);
         } catch (error) {
-            res.next(error)
+            next(error)
         }
     }
 };
