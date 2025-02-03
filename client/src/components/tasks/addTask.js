@@ -5,8 +5,7 @@ export default function AddTask({ fetchTasks }) {
     const [ description, setDescription ] = useState('');
 
     const submit = async () => {
-        const data = { description };
-        await taskService.addTask(data);
+        await taskService.addTask(description);
         fetchTasks()
     }
 

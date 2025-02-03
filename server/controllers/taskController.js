@@ -3,7 +3,7 @@ const taskModel = require('../models/taskModel')
 const taskController = {
     addTask: async (req, res, next) => {
         try {
-            const {userId, date, description} = req.body;
+            const { userId, date, description } = req.body;
             const newTask = await taskModel.addTask(userId, date, description);
 
             res.status(201).json({ newTask });
@@ -29,10 +29,10 @@ const taskController = {
             const { id } = req.params;
             const deletedTask = await taskModel.deleteTask(id);
 
-            if(deletedTask) {
-                res.status(204).send();deletedTask
+            if (deletedTask) {
+                res.status(204).json({ message: 'Tarefa deletada com sucesso' });
             } else {
-                res.status(404),json({ error: 'Tarefa não encontrada'})
+                res.status(404).json({ message: 'Tarefa não encontrada' })
             }
         } catch (error) {
             next(error)

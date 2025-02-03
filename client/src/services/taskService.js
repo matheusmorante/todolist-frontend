@@ -2,25 +2,35 @@ import dataNow from '../utils/dateNow';
 import api from './api';
 
 const taskService = {
-    addTask: async (data) => {
+    addTask: async (description) => {
         try {
             const sessionUser = await api.get('/session/user');
             const userId = sessionUser.data.id;
 
-            const newData = { ...data, date: dataNow(), userId};
-            const response = await api.post('/tasks/add', newData);
+            const data = { date: dataNow(), description, userId };
+            const response = await api.post('/tasks/add', data);
             return response.data;
         } catch (e) {
             alert('Não foi possivel adicionar tarefa.');
         }
     },
 
-    getTask: async (id) => {
+    updateTask: async (date, description, status, id) => {
         try {
-            const response = await api.get(`/tasks/${id}`);
+            const data = { date, description, status, id}
+            const response = await api.put(`/tasks/edit/${id}`, data);
             return response.data; 
         } catch (error) {
-            alert('Erro ao buscar tarefa');
+            alert('Erro ao editar tarefa');
+        }
+    },
+
+    deleteTask: async (id) => {
+        try {
+            const response = api.delete(`/tasks/delete/${id}`);
+            return response.data;
+        } catch (error) {
+            alert('Erro ao deletar tarefa');
         }
     },
 

@@ -1,13 +1,13 @@
 const pool = require('./db');
 
 const taskModel = {
-    addTask: async (userId, date, description, status) => {
+    addTask: async (userId, date, description) => {
         try {
             const result = await pool.query(
                 `INSERT INTO tasks(user_id, date, description, status) 
                 VALUES ($1, $2, $3, $4)
                 RETURNING *`,
-                [userId, date, description, status]
+                [userId, date, description, 'active']
             );
 
             return result.rows[0];
