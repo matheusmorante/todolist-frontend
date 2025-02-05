@@ -17,6 +17,10 @@ const taskController = {
             const { id } = req.params;
             const { date, description, status } = req.body;
 
+            if(!id) {
+                res.status(404).json( { message: 'Tarefa não encontrada'})
+            }
+
             const updatedTask = await taskModel.updateTask(date, description, status, id);
             res.status(200).json(updatedTask);
         } catch (error) {

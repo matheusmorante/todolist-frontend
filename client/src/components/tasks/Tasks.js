@@ -7,14 +7,13 @@ import EditTask from './EditTask';
 export default function Tasks({ userId }) {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState('');
-    const [currentForm, setCurrentForm] = useState('add');
+    const [editingTask, setEditingTask] = useState(null);
 
     const fetchTasks = useCallback(async () => {
         if (!userId) return;
         const data = await taskService.getTasksByUserId(userId);
         setTasks(data || []);
     }, [userId]);
-
 
     useEffect(() => {
         fetchTasks();
@@ -32,9 +31,16 @@ export default function Tasks({ userId }) {
                 <i class="bi bi-sort-alpha-down" />
             </div>
             <table>
-                {currentForm === 'add' && <AddTask fetchTasks={fetchTasks} />}
-                {currentForm === 'edit' && <EditTask setCurrentForm={setCurrentForm} />}
-                {tasks.map(task => <Task task={task} setCurrentForm={setCurrentForm} />)}
+                {editingTask ? (
+                    <EditTask
+                        editingTask={editingTask}
+                        setEditingTask={setEditingTask}
+                        fetchTasks={fetchTasks}
+                    />
+                ) : (
+                    <AddTask fetchTasks={fetchTasks} />
+                )}
+                {tasks.map(task => <Task task={task} setEditingTask={setEditingTask} />)}
             </table>
         </section>
     )

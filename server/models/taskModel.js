@@ -19,7 +19,9 @@ const taskModel = {
     updateTask: async (date, description, status, id) => {
         try {
             const result = await pool.query(
-                'UPDATE tasks SET date = $1, description = $2, status = $3 WHERE id = $4',
+                `UPDATE tasks SET date = $1, description = $2, status = $3 
+                WHERE id = $4
+                RETURNING *`,
                 [date, description, status, id]
             );
 

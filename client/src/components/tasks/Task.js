@@ -1,7 +1,7 @@
 import React, {  useState } from 'react';
 import taskService from '../../services/taskService';
 
-export default function Task({ task, setShowCurrentForm }) {
+export default function Task({ task, setEditingTask }) {
     const toogleStatus = () => {
         const newStatus = task.status === 'done' ? 'active' : 'done';
 
@@ -13,7 +13,7 @@ export default function Task({ task, setShowCurrentForm }) {
             <td><i onClick={toogleStatus} className="bi bi-check"/></td>
             <td>{ task.description } - { task.date }</td>
             <td>
-                <i onClick={() => setShowCurrentForm('edit')} class="bi bi-pencil"/>
+                <i onClick={() => setEditingTask(task)} class="bi bi-pencil"/>
                 <i class="bi bi-trash3"/>
             </td>
 

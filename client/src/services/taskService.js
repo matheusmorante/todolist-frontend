@@ -17,8 +17,9 @@ const taskService = {
 
     updateTask: async (date, description, status, id) => {
         try {
-            const data = { date, description, status, id}
-            const response = await api.put(`/tasks/edit/${id}`, data);
+            const data = { date, description, status, id};
+            console.log(date, description, status, id);
+            const response = await api.put(`/tasks/update/${id}`, data);
             return response.data; 
         } catch (error) {
             alert('Erro ao editar tarefa');

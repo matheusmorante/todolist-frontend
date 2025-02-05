@@ -1,28 +1,29 @@
 import React, { useState } from 'react';
 import taskService from '../../services/taskService';
 
-export default function EditTask({ task, setCurrentForm }) {
-    const [ description, setDescription ] = useState('');
+export default function EditTask({ fetchTasks,  editingTask, setEditingTask }) {
+    const [description, setDescription] = useState(editingTask.description);
 
-    const submit = () => {
-        taskService.updateTask(task.date, description, task.status, task.id);
+    const submit = async () => {
+        await taskService.updateTask(editingTask.date, description, editingTask.status, editingTask.id);
         setDescription('');
-        setCurrentForm('add')
+        setEditingTask(null);
+        fetchTasks();
     }
 
     const cancel = () => {
         setDescription('');
-        setCurrentForm('add');
+        setEditingTask(null);
     }
 
     return (
         <tr>
             <td>
-                <input value={description} onChange={ e => setDescription(e.target.value) }/>
+                <input value={description} onChange={e => setDescription(e.target.value)} />
             </td>
             <td>
-                <a onClick={submit} className='bi bi-check-2'/>
-                <a onClick={cancel} className='bi bi-x-lg'/>
+                <a onClick={submit} className='bi bi-check' />
+                <a onClick={cancel} className='bi bi-x-lg' />
             </td>
         </tr>
     )

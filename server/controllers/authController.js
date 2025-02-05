@@ -11,18 +11,18 @@ const authController = {
         } catch (error) {
             next(error)
         }
-        
+
     },
 
     login: async (req, res) => {
         try {
             const { login, password } = req.body;
-           
+
 
             if (!login || !password) {
                 return res.status(400).json({ message: 'O nome do usuário/email e senha são obrigatórios.' });
             }
-            
+
             const user = await userModel.getUserByNameOrEmail(login);
 
             if (!user) {
@@ -47,12 +47,12 @@ const authController = {
             const { name, email, password } = req.body;
 
             const existingUser = await userModel.getUserByNameOrEmail(name) ||
-                                    await userModel.getUserByNameOrEmail(email);
+                await userModel.getUserByNameOrEmail(email);
 
-            if(existingUser) {
+            if (existingUser) {
                 return res.status(409).json({ message: 'O nome de usuário/email já estão em uso' });
             }
-       
+
             const hashedPassword = await hashPassword(password);
 
             await userModel.addUser(name, email, hashedPassword);
