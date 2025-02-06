@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import taskService from '../../services/taskService';
+import { useTasks } from '../../context/TaskContext'
 
-export default function EditTask({ fetchTasks,  editingTask, setEditingTask }) {
-    const [description, setDescription] = useState(editingTask.description);
+export default function EditTask() {
+    const { editingTask, setEditingTask, fetchTasks } = useTasks();
+    const [description, setDescription] = useState(editingTask?.description);
 
     const submit = async () => {
         await taskService.updateTask(editingTask.date, description, editingTask.status, editingTask.id);
-        setDescription('');
         setEditingTask(null);
         fetchTasks();
     }
 
     const cancel = () => {
-        setDescription('');
         setEditingTask(null);
     }
 

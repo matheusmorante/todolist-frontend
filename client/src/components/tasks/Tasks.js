@@ -1,23 +1,26 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import Task from './Task';
-import taskService from '../../services/taskService'
 import AddTask from './AddTask';
 import EditTask from './EditTask';
+import { useTasks } from '../../context/TaskContext'
+import sort from '../../utils/sort';
 
 export default function Tasks({ userId }) {
-    const [tasks, setTasks] = useState([]);
-    const [filter, setFilter] = useState('');
-    const [editingTask, setEditingTask] = useState(null);
+    const { tasks, editingTask, filter, setFilter } = useTasks();
+    const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
 
-    const fetchTasks = useCallback(async () => {
-        if (!userId) return;
-        const data = await taskService.getTasksByUserId(userId);
-        setTasks(data || []);
-    }, [userId]);
+    const sortedTasks = sort(tasks, sortConfig.key, sortConfig.direction);
 
-    useEffect(() => {
-        fetchTasks();
-    }, [fetchTasks]);
+    const filteredTasks = sortedTasks.filter((task) => {
+        return task.description.toLowerCase().includes(filter.toLowerCase())
+    })
+
+    const changeDirection = () => {
+        setSortConfig((prevConfig => {
+            const newDirection = prevConfig.direction === 'asc' ? 'desc' : 'asc';
+            return { ...prevConfig, direction: newDirection };
+        }))
+    }
 
     return (
         <section>
@@ -28,19 +31,30 @@ export default function Tasks({ userId }) {
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
                 />
-                <i class="bi bi-sort-alpha-down" />
+                <select
+                    onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
+                >
+                    <option value='description'>Descriçao</option>
+                    <option value='date'>Data de criação</option>
+                    <option value='status'>Status</option>
+                </select>
+                <i
+                    onClick={changeDirection}
+                    class={
+                        `bi bi-sort-${sortConfig.direction === 'asc' ?
+                            'alpha-down' : 'alpha-up-alt'}`
+                    }
+                />
             </div>
             <table>
                 {editingTask ? (
-                    <EditTask
-                        editingTask={editingTask}
-                        setEditingTask={setEditingTask}
-                        fetchTasks={fetchTasks}
-                    />
+                    <EditTask />
                 ) : (
-                    <AddTask fetchTasks={fetchTasks} />
+                    <AddTask />
                 )}
-                {tasks.map(task => <Task task={task} setEditingTask={setEditingTask} />)}
+                {filteredTasks.map(task => (
+                    <Task task={task} />
+                ))}
             </table>
         </section>
     )

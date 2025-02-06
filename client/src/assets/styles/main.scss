@@ -1,6 +1,7 @@
 @import './components/header';
+@import './components/tasks';
 @import './base/variables';
-@import './components/login_page';
+@import './pages/login_page';
 
 body {
     margin: 0;
