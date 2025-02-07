@@ -8,21 +8,21 @@ export const isMatching = (password, confirmPassword, errorText) => {
     return true
 }
 
-export const isNotEmpty = (fields) => {
+export const isEmpty = (fields) => {
     const fields = document.getElementsByTagName('input');
-
-    let emptyFields = [];
+    let boolean = true;
 
     fields.forEach(field => {
         if (field.value.trim() === '') {
             const labelText = field.previousElementSibling.innerText.trim();
-            field.add
+            let p = document.createElement('p');
+            p.textContent = `O campo "${labelText}" não pode estar vázio`
+            field.insertAdjacentElement('afterend', p)
+            boolean = false
+        } else {
+
         }
     })
+    return boolean;
 
-    if (emptyFields.length > 0) {
-        const fieldsText = emptyFields.map(field => `"${field}"`).join(', ');
-
-        alert(`Os campo `)
-    }
 }

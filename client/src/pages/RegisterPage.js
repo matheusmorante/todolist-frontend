@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import authService from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import { isMatching, registerPasswordsAreMatching } from '../utils/validations'
+import EmptyFieldError from '../components/Error';
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -29,24 +30,31 @@ export default function RegisterPage() {
 
     return (
         <form>
-            <label>Nome do Usuário</label>
+            <label>Nome de usuário</label>
             <input type='text' value={username} onChange={e => setUsername(e.target.value)} />
+            {username.trim() === '' && <EmptyFieldError field={'Nome do usuário'} />}
+
             <label>Email</label>
             <input type='email' value={email} onChange={e => setEmail(e.target.value)} />
+            {email.trim() === '' && <EmptyFieldError field={'Email'} />}
+
             <label>Senha</label>
             <input
                 type='password'
                 value={password}
                 onChange={e => setPassword(e.target.value)}
             />
+            {password.trim() === '' && <EmptyFieldError field={'Senha'} />}
+
             <label>Repetir senha</label>
             <input
                 type='password'
                 value={confirmPassword}
                 onChange={e => setConfirmPassword(e.target.value)}
             />
-            <button onClick={submit}>Concluir</button>
+            {password.trim() === '' && <EmptyFieldError field={'Repetir senha'} />}
 
+            <button onClick={submit}>Concluir</button>
             <p>
                 Já tem uma conta? <a href='/login'>Logar-se</a>
             </p>
