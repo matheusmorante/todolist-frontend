@@ -18,7 +18,6 @@ const authController = {
         try {
             const { login, password } = req.body;
 
-
             if (!login || !password) {
                 return res.status(400).json({ message: 'O nome do usuário/email e senha são obrigatórios.' });
             }
@@ -56,13 +55,24 @@ const authController = {
             const hashedPassword = await hashPassword(password);
 
             await userModel.addUser(name, email, hashedPassword);
-            res.status(201).json({
-                message: 'Usuário registrado com sucesso!'
-            });
+            res.status(201).json({ message: 'Usuário registrado com sucesso!' });
         } catch (error) {
             next(error)
         }
     },
+
+    changePassword: async (req, res, next) => {
+        const { currentPassword, storedPassword, newPassword, confirmNewPassword } = req.body;
+
+        if (!currentPassword || !newPassword || !confirmNewPassword) {
+            return res.status(400).json({ message: 'Preencha todos os campos.' })
+        }
+
+        const isMatch = await verifyPassword(currentPassword, storedPassword);
+        if (!isMatch) {
+            return res.status(401).json({ message: 'Senha incorreta' });
+        }
+    }
 }
 
 module.exports = authController;

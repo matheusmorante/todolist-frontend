@@ -12,7 +12,7 @@ const hashPassword = async (password) => {
 
 const verifyPassword = (enteredPassword, storedHashedPassword) => {
     const isMatch = bcrypt.compare(enteredPassword, storedHashedPassword);
-    return  isMatch;
+    return isMatch;
 }
 
 module.exports = {hashPassword, verifyPassword};

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import taskService from '../../services/taskService';
-import { useTasks } from '../../context/TaskContext'
+import { useTask } from '../../context/TaskContext'
 
 export default function EditTask() {
-    const { editingTask, setEditingTask, fetchTasks } = useTasks();
+    const { editingTask, setEditingTask, fetchTasks } = useTask();
     const [description, setDescription] = useState(editingTask?.description);
 
     const submit = async () => {
@@ -22,8 +22,8 @@ export default function EditTask() {
                 <input value={description} onChange={e => setDescription(e.target.value)} />
             </td>
             <td>
-                <a onClick={submit} className='bi bi-check' />
-                <a onClick={cancel} className='bi bi-x-lg' />
+                <i onClick={submit} className='bi bi-check' />
+                <i onClick={cancel} className='bi bi-x-lg' />
             </td>
         </tr>
     )

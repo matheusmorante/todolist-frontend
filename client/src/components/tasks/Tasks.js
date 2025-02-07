@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Task from './Task';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
-import { useTasks } from '../../context/TaskContext'
+import { useTask } from '../../context/TaskContext'
 import sort from '../../utils/sort';
 
 export default function Tasks({ userId }) {
-    const { tasks, editingTask, filter, setFilter } = useTasks();
+    const { tasks, editingTask, filter, setFilter } = useTask();
     const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
 
     const sortedTasks = sort(tasks, sortConfig.key, sortConfig.direction);

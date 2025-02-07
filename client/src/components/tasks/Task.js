@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import taskService from '../../services/taskService';
-import { useTasks } from '../../context/TaskContext';
+import { useTask } from '../../context/TaskContext';
 
 export default function Task({ task }) {
-    const { setEditingTask, fetchTasks } = useTasks();
+    const { setEditingTask, fetchTasks } = useTask();
 
     const toogleStatus = async () => {
         const newStatus = task.status === 'done' ? 'active' : 'done';
@@ -19,7 +19,8 @@ export default function Task({ task }) {
     return (
         <tr className={task.status === 'done' ? 'task-done' : ''}>
             <td><i onClick={toogleStatus} className="bi bi-check" /></td>
-            <td>{task.description} - {task.date}</td>
+            <td>{task.description}</td>
+            <td>{task.date}</td>
             <td>
                 <i onClick={() => setEditingTask(task)} class="bi bi-pencil" />
                 <i onClick={deleteTask} class="bi bi-trash3" />

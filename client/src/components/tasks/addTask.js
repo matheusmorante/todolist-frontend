@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { useTasks } from '../../context/TaskContext';
+import React, { useState } from 'react';
+import { useTask } from '../../context/TaskContext';
 import taskService from '../../services/taskService'
 
 export default function AddTask() {
-    const { fetchTasks } = useTasks();
+    const { fetchTasks } = useTask();
     const [ description, setDescription ] = useState('');
 
     const submit = async () => {
@@ -17,8 +17,9 @@ export default function AddTask() {
             <td colSpan={2}>
                 <input value={description} onChange={e => setDescription(e.target.value)}/>
             </td>
+            <td></td>
             <td>
-                <a className='bi bi-check' onClick={submit} />
+                <i className='bi bi-plus' onClick={submit} />
             </td>
         </tr>
     )

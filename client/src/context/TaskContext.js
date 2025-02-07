@@ -27,6 +27,6 @@ export const TaskProvider = ({ children, userId }) => {
     );
 }
 
-export function useTasks() {
+export function useTask() {
     return useContext(TaskContext);
 }
