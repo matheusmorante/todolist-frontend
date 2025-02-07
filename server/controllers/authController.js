@@ -62,9 +62,9 @@ const authController = {
     },
 
     changePassword: async (req, res, next) => {
-        const { currentPassword, storedPassword, newPassword, confirmNewPassword } = req.body;
+        const { currentPassword, storedPassword, newPassword} = req.body;
 
-        if (!currentPassword || !newPassword || !confirmNewPassword) {
+        if (!currentPassword || !newPassword ) {
             return res.status(400).json({ message: 'Preencha todos os campos.' })
         }
 

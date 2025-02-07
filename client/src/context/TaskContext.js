@@ -9,7 +9,6 @@ export const TaskProvider = ({ children, userId }) => {
     const [editingTask, setEditingTask] = useState(null);
 
     const fetchTasks = useCallback(async () => {
-        if (!userId) return;
         const data = await taskService.getTasksByUserId(userId);
         setTasks(data || []);
     }, [userId]);

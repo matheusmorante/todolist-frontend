@@ -30,7 +30,7 @@ const authService = {
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert('Não foi possivel realizar cadastro');
+            alert(e.response.data.message);
             return false
         }
     },
@@ -42,7 +42,7 @@ const authService = {
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert('Não foi possivel editar usuário');
+            alert('Não foi possivel mudar a senha');
             return false
         }
     }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import authService from '../services/authService';
 import { useNavigate } from 'react-router-dom';
+import { isMatching, registerPasswordsAreMatching } from '../utils/validations'
 
 export default function RegisterPage() {
     const [username, setUsername] = useState('');
@@ -12,21 +13,18 @@ export default function RegisterPage() {
     const submit = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            alert('As senhas não coicidem');
-            return;
+        if (
+            !isMatching(password, confirmPassword, 'As senhas não coincidem')
+        ) {
+            return false;
         }
 
-        try {
-            const userData = { name: username, email, password };
-            const register = await authService.register(userData);
+        const register = await authService.register({ name: username, email, password });
 
-            if(register) {
-                navigate('/login');
-            }
-        } catch (error) {
-            console.error('Erro:', error);
+        if (register) {
+            navigate('/login');
         }
+
     }
 
     return (
