@@ -1,5 +1,4 @@
-import changePassword from "../components/perfil/ChangePassword";
-import api from "./api"
+import api from "./api";
 
 const authService = {
     getSessionUser: async () => {
