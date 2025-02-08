@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const session = require("express-session");
-const sessionRoutes = require('./routes/sessionRoutes');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const taskRoutes = require('./routes/taskRoutes');
@@ -23,7 +22,6 @@ app.use(
     },
   })
 );
-app.use('/api/session', sessionRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);

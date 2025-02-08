@@ -1,9 +1,9 @@
 import api from "./api";
 
 const authService = {
-    getSessionUser: async () => {
+    getUser: async () => {
         try {
-            const response = await api.get('/session/user');
+            const response = await api.get('/auth/user');
             return response.data;
         } catch (error) {
             console.error('Erro ao buscar usuário da sessao:', error);
@@ -18,6 +18,17 @@ const authService = {
             return true;
         } catch (e) {
             alert('Não foi possivel realizar login');
+            return false;
+        }
+    },
+
+    logout: async (data) => {
+        try {
+            const response = await api.post('/auth/logout', data);
+            alert(response.data.message);
+            return true;
+        } catch (e) {
+            alert('Não foi possivel realizar logout');
             return false;
         }
     },

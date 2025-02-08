@@ -11,7 +11,6 @@ const authController = {
         } catch (error) {
             next(error)
         }
-
     },
 
     login: async (req, res) => {
@@ -41,6 +40,17 @@ const authController = {
         }
     },
 
+    logout: async (req, res, next) => {
+        try {
+            req.session.destroy(() => {
+                res.clearCookie("connect.sid");
+                return res.status(200).json({ message: "Logout realizado com sucesso" });
+            });
+        } catch (error) {
+            next(error);
+        }
+    },
+
     register: async (req, res, next) => {
         try {
             const { name, email, password } = req.body;
@@ -62,9 +72,11 @@ const authController = {
     },
 
     changePassword: async (req, res, next) => {
-        const { currentPassword, storedPassword, newPassword} = req.body;
+        const { currentPassword, storedPassword, newPassword, id } = req.body;
 
-        if (!currentPassword || !newPassword ) {
+        const user = await userModel.getUserById(id);
+
+        if (!currentPassword || !newPassword) {
             return res.status(400).json({ message: 'Preencha todos os campos.' })
         }
 
@@ -72,6 +84,9 @@ const authController = {
         if (!isMatch) {
             return res.status(401).json({ message: 'Senha incorreta' });
         }
+
+        await userModel.changePassword(user.name, user.email, user.currentPassword);
+        res.status(200).json({ message: 'Não foi possivel alterar a senah de usuário.' });
     }
 }
 

@@ -14,7 +14,7 @@ export default function HomePage() {
 
     useEffect(() => {
         const checkAuth = async () => {
-            const sessionUser = await authService.getSessionUser();
+            const sessionUser = await authService.getUser();
             
             setUser(sessionUser);
             setLoading(false);

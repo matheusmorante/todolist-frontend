@@ -1,20 +1,27 @@
 import React, { useState } from 'react'
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChangePassword() {
     const [oldPassword, setOldPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
-    const { user } = AuthContext();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
-    const submit = (e) => {
+    const submit = async () => {
         if (newPassword !== confirmNewPassword) {
             alert('As senhas não coicidem');
             return;
         }
 
-        authService.changePassword({ oldPassword, storedPassword: user.password, newPassword });
+        await authService.changePassword(
+            { oldPassword, storedPassword: user.password, newPassword, id: user.id }
+        );
+
+        await authService.logout();
+        navigate('/login');
     }
 
     return (
