@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import authService from '../services/authService';
+import authService from './authService';
 import { useNavigate } from 'react-router-dom';
 import { isMatching } from '../utils/validations'
 import EmptyFieldError from '../components/Error';

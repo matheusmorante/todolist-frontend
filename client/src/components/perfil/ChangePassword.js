@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
+import userService from '../../services/userService';
 
 export default function ChangePassword({ setCurrentForm }) {
     const [currentPassword, setCurrentPassword] = useState('');
@@ -14,9 +15,16 @@ export default function ChangePassword({ setCurrentForm }) {
             return;
         }
 
-        await authService.changePassword({ currentPassword, newPassword, id: user.id });
+        const changePassword = await userService.changePassword(
+            { currentPassword, newPassword, id: user.id }
+        );
 
-        authService.logout();
+        if(changePassword) {
+            authService.logout();
+            return;
+        }
+
+        setCurrentForm('');
     }
 
     return (

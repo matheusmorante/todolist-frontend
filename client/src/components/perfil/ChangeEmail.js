@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext';
-import authService from '../../services/authService';
+import userService from '../../services/userService';
 
 export default function ChangeEmail({ setCurrentForm }) {
     const [email, setEmail] = useState('');
@@ -8,7 +8,7 @@ export default function ChangeEmail({ setCurrentForm }) {
     const { user } = useAuth();
 
     const submit = async () => {
-        await authService.changeEmail({ email, password, id: user.id });
+        await userService.changeEmail({ email, password, id: user.id });
 
         setCurrentForm('');
     }

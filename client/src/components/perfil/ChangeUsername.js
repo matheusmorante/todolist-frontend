@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext';
-import authService from '../../services/authService';
+import userService from '../../services/userService';
 
 export default function ChangeUsername({ setCurrentForm }) {
     const [username, setUsername] = useState('');
@@ -8,7 +8,7 @@ export default function ChangeUsername({ setCurrentForm }) {
     const { user } = useAuth();
 
     const submit = async () => {
-        await authService.changeUsername({ username, password, id: user.id });
+        await userService.changeUsername({ username, password, id: user.id });
 
         setCurrentForm('');
     }
