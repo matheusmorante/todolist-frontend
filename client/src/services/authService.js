@@ -45,6 +45,31 @@ const authService = {
         }
     },
 
+    changeUsername: async (data) => {
+        try {
+            const response = await api.post('/auth/update/username', data);
+            
+            alert(response.data.message);
+            return true;
+        } catch (e) {
+            alert('Não foi possivel mudar nome de usuário');
+            return false
+        }
+    },
+
+
+    changeEmail: async (data) => {
+        try {
+            const response = await api.post('/auth/update/email', data);
+            
+            alert(response.data.message);
+            return true;
+        } catch (e) {
+            alert('Não foi possivel mudar email');
+            return false
+        }
+    },
+
     changePassword: async (data) => {
         try {
             const response = await api.post('/auth/update/password', data);

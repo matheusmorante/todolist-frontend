@@ -71,22 +71,61 @@ const authController = {
         }
     },
 
+    changeUsername: async (req, res, next) => {
+        try {
+            const { newUsername, password, id } = req.body;
+
+            const user = await userModel.getUserById(id);
+            const storedPassword = user.password;
+
+            const isMatch = await verifyPassword(password, storedPassword);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Senha incorreta' });
+            }
+
+            await userModel.updateUser(newUsername, user.email, user.password, user.id);
+            res.status(200).json({ message: 'Não foi possivel alterar nome do usuário.' });
+        } catch (error) {
+            next(error)
+        }
+    },
+
+    changeEmail: async (req, res, next) => {
+        try {
+            const { newEmail, password, id } = req.body;
+
+            const user = await userModel.getUserById(id);
+            const storedPassword = user.password;
+
+            const isMatch = await verifyPassword(password, storedPassword);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Senha incorreta' });
+            }
+
+            await userModel.updateUser(user.name, newEmail, user.password, user.id);
+            res.status(200).json({ message: 'Não foi possivel alterar email.' });
+        } catch (error) {
+            next(error)
+        }
+    },
+
     changePassword: async (req, res, next) => {
-        const { currentPassword, storedPassword, newPassword, id } = req.body;
+        try {
+            const { currentPassword, newPassword, id } = req.body;
 
-        const user = await userModel.getUserById(id);
+            const user = await userModel.getUserById(id);
+            const storedPassword = user.password;
 
-        if (!currentPassword || !newPassword) {
-            return res.status(400).json({ message: 'Preencha todos os campos.' })
+            const isMatch = await verifyPassword(currentPassword, storedPassword);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'Senha incorreta' });
+            }
+
+            await userModel.updateUser(user.name, user.email, newPassword, user.id);
+            res.status(200).json({ message: 'Não foi possivel alterar a senha.' });
+        } catch (error) {
+            next(error)
         }
-
-        const isMatch = await verifyPassword(currentPassword, storedPassword);
-        if (!isMatch) {
-            return res.status(401).json({ message: 'Senha incorreta' });
-        }
-
-        await userModel.changePassword(user.name, user.email, user.currentPassword);
-        res.status(200).json({ message: 'Não foi possivel alterar a senah de usuário.' });
     }
 }
 

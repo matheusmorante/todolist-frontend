@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
-import { useNavigate } from 'react-router-dom';
 
-export default function ChangePassword() {
-    const [oldPassword, setOldPassword] = useState('');
+export default function ChangePassword({ setCurrentForm }) {
+    const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const { user } = useAuth();
-    const navigate = useNavigate();
 
     const submit = async () => {
         if (newPassword !== confirmNewPassword) {
@@ -16,18 +14,18 @@ export default function ChangePassword() {
             return;
         }
 
-        await authService.changePassword(
-            { oldPassword, storedPassword: user.password, newPassword, id: user.id }
-        );
+        await authService.changePassword({ currentPassword, newPassword, id: user.id });
 
-        await authService.logout();
-        navigate('/login');
+        authService.logout();
     }
 
     return (
         <form>
+            <div>
+                <i className='bi bi-x-lg' onClick={() => setCurrentForm('')} />
+            </div>
             <label>Senha antiga</label>
-            <input value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
+            <input value={currentPassword} onChange={e => setCurrentPassword(e.target.value)} />
             <label>Senha nova</label>
             <input value={newPassword} onChange={e => setNewPassword(e.target.value)} />
             <label>Confirme a nova senha</label>
