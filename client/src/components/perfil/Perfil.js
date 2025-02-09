@@ -3,14 +3,15 @@ import authService from '../../services/authService';
 import ChangeUsername from './ChangeUsername';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
+import { useNavigate } from "react-router-dom";
 
 export default function Perfil({ user}) {
     const [currentForm, setCurrentForm] = useState('');
-
+    const navigate = useNavigate();
 
     const logout = async () => {
-        authService.logout();
-
+        await authService.logout();
+        navigate('/login');
     }
 
     return (

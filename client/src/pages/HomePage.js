@@ -18,12 +18,16 @@ export default function HomePage() {
             setLoading(false);
 
             if (!sessionUser) {
-                navigate('/login');
+                return navigate('/login');
             }
+
+            console.log('userssesion', sessionUser);
+
+            setUser(sessionUser);
         };
 
         checkAuth();
-    }, [navigate, setUser, user]);
+    }, [navigate, setUser]);
 
     if (loading) {
         return <p>Loading...</p>; 

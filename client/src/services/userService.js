@@ -3,7 +3,7 @@ import api from './api';
 const userService = {
     getSessionUser: async () => {
         try {
-            const response = await api.get('/session/user');
+            const response = await api.get('/users/session');
             return response.data;
         } catch (error) {
             console.error('Erro ao buscar usuário da sessao:', error);

@@ -4,10 +4,11 @@ const userController = {
 
     getSessionUser: async (req, res, next) => {
         try {
-            if (req.session.user) {
-                return res.status(200).json(req.session.user);
+            if (!req.session.user) {
+                return res.status(401).json({ message: 'Usuário não autenticado' });
             }
-            res.status(401).json({ message: 'Usuário não autenticado' });
+    
+            return res.status(200).json(req.session.user);
         } catch (error) {
             next(error)
         }

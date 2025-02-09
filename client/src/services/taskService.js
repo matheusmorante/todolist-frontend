@@ -4,7 +4,7 @@ import api from './api';
 const taskService = {
     addTask: async (description) => {
         try {
-            const sessionUser = await api.get('/session/user');
+            const sessionUser = await api.get('/users/session');
             const userId = sessionUser.data.id;
 
             const data = { date: dataNow(), description, userId };
