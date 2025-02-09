@@ -14,7 +14,6 @@ export default function LoginPage() {
         if(loggedIn) {
             navigate('/')
         }
-    
     }
 
     return (

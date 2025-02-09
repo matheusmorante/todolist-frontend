@@ -22,9 +22,9 @@ const authService = {
         }
     },
 
-    logout: async (data) => {
+    logout: async () => {
         try {
-            const response = await api.post('/auth/logout', data);
+            const response = await api.post('/auth/logout');
             alert(response.data.message);
             return true;
         } catch (e) {

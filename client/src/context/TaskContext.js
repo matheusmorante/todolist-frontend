@@ -14,8 +14,10 @@ export const TaskProvider = ({ children, userId }) => {
     }, [userId]);
     
     useEffect(() => {
-        fetchTasks();
-    }, [fetchTasks]);
+        if (userId) {
+            fetchTasks();
+        }
+    }, [fetchTasks, userId]);
 
     return (
         <TaskContext.Provider 

@@ -16,7 +16,10 @@ export default function HomePage() {
         const checkAuth = async () => {
             const sessionUser = await authService.getUser();
             
-            setUser(sessionUser);
+            if (sessionUser !== user) {
+                setUser(sessionUser);
+            }
+           
             setLoading(false);
 
             if (!sessionUser) {
@@ -25,7 +28,7 @@ export default function HomePage() {
         };
 
         checkAuth();
-    }, [navigate, setUser]);
+    }, [navigate, setUser, user]);
 
     if (loading) {
         return <p>Loading...</p>; 
