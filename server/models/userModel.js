@@ -21,7 +21,6 @@ const userModel = {
             );
             return result.rows[0];
         } catch (error) {
-            console.error('Erro ao atualizar usuário:', error);
             throw error;
         }
     },

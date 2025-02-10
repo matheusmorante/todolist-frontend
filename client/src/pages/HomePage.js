@@ -21,8 +21,6 @@ export default function HomePage() {
                 return navigate('/login');
             }
 
-            console.log('userssesion', sessionUser);
-
             setUser(sessionUser);
         };
 

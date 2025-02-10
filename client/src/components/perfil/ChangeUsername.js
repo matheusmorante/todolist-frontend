@@ -7,10 +7,17 @@ export default function ChangeUsername({ setCurrentForm }) {
     const [password, setPassword] = useState('');
     const { user } = useAuth();
 
-    const submit = async () => {
-        await userService.changeUsername({ username, password, id: user.id });
+    const submit = async (e) => {
+        e.preventDefault();
+        const changeUsername = await userService.changeUsername(
+            { username, password, id: user.id }
+        );
 
-        setCurrentForm('');
+        if(changeUsername) {
+            setCurrentForm('');
+        }
+
+     
     }
 
     return (

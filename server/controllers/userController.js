@@ -1,7 +1,7 @@
 const userModel = require('../models/userModel');
+const { verifyPassword } = require('../utils/bcryptUtils');
 
 const userController = {
-
     getSessionUser: async (req, res, next) => {
         try {
             if (!req.session.user) {
@@ -13,7 +13,6 @@ const userController = {
             next(error)
         }
     },
-
 
     getUserById: async (req, res, next) => {
         try {
@@ -27,16 +26,16 @@ const userController = {
 
     changeUsername: async (req, res, next) => {
         try {
-            const { newUsername, password, id } = req.body;
+            const { id } = req.params;
+            const { newUsername, password} = req.body;
+
+            const existingUsername = await userModel.getUserByNameOrEmail(newUsername);
+            if(existingUsername) {
+                return res.status(409).json({ message: 'Esse nome de usuário ja está em uso'});
+            }
 
             const user = await userModel.getUserById(id);
             const storedPassword = user.password;
-
-            const existingUsername = userModel.getUserByNameOrEmail(newUSername);
-
-            if(existingUsername) {
-                res.status(409).json({ message: 'Esse nome de usuário ja está em uso'})
-            }
 
             const isMatch = await verifyPassword(password, storedPassword);
             if (!isMatch) {
@@ -52,15 +51,16 @@ const userController = {
 
     changeEmail: async (req, res, next) => {
         try {
-            const { newEmail, password, id } = req.body;
+            const { id } = req.params;
+            const { newEmail, password } = req.body;
 
             const user = await userModel.getUserById(id);
             const storedPassword = user.password;
 
-            const existingEmail = userModel.getUserByNameOrEmail(newEmail);
+            const existingEmail = await userModel.getUserByNameOrEmail(newEmail);
 
             if(existingEmail) {
-                res.status(409).json({ message: 'Esse email ja está em uso'})
+                return res.status(409).json({ message: 'Esse email ja está em uso'})
             }
 
             const isMatch = await verifyPassword(password, storedPassword);
@@ -77,7 +77,8 @@ const userController = {
 
     changePassword: async (req, res, next) => {
         try {
-            const { currentPassword, newPassword, id } = req.body;
+            const { id } = req.params;
+            const { currentPassword, newPassword} = req.body;
 
             const user = await userModel.getUserById(id);
             const storedPassword = user.password;

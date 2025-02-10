@@ -7,7 +7,8 @@ export default function ChangeEmail({ setCurrentForm }) {
     const [password, setPassword] = useState('');
     const { user } = useAuth();
 
-    const submit = async () => {
+    const submit = async (e) => {
+        e.preventDefault();
         await userService.changeEmail({ email, password, id: user.id });
 
         setCurrentForm('');

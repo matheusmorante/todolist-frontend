@@ -9,7 +9,8 @@ export default function ChangePassword({ setCurrentForm }) {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const { user } = useAuth();
 
-    const submit = async () => {
+    const submit = async (e) => {
+        e.preventDefault();
         if (newPassword !== confirmNewPassword) {
             alert('As senhas não coicidem');
             return;
