@@ -1,11 +1,10 @@
 import React from 'react';
-import defaultPerfil from '../assets/images/defaultperfil.png';
 
 export default function Header() {
     return (
         <header>
             Tarefando
-            <img src={defaultPerfil} alt="Perfil" />
+            <h1>Perfil</h1>
         </header>
     )
 }

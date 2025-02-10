@@ -23,16 +23,13 @@ const userService = {
 
     },
 
-    changeUsername: async (data) => {
-       
+    changeUsername: async (data) => { 
         try {            
             const response = await api.put(`/users/update/${data.id}/username`, data);
-            
             alert(response.data.message);
             return true;
         } catch (e) {
             alert('Não foi possivel mudar nome de usuário');
-            console.error(e);
             return false
         }
     },

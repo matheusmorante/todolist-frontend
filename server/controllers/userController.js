@@ -7,7 +7,7 @@ const userController = {
             if (!req.session.user) {
                 return res.status(401).json({ message: 'Usuário não autenticado' });
             }
-    
+
             return res.status(200).json(req.session.user);
         } catch (error) {
             next(error)
@@ -27,11 +27,11 @@ const userController = {
     changeUsername: async (req, res, next) => {
         try {
             const { id } = req.params;
-            const { newUsername, password} = req.body;
+            const { newUsername, password } = req.body;
 
             const existingUsername = await userModel.getUserByNameOrEmail(newUsername);
-            if(existingUsername) {
-                return res.status(409).json({ message: 'Esse nome de usuário ja está em uso'});
+            if (existingUsername) {
+                return res.status(409).json({ message: 'Esse nome de usuário ja está em uso' });
             }
 
             const user = await userModel.getUserById(id);
@@ -59,8 +59,8 @@ const userController = {
 
             const existingEmail = await userModel.getUserByNameOrEmail(newEmail);
 
-            if(existingEmail) {
-                return res.status(409).json({ message: 'Esse email ja está em uso'})
+            if (existingEmail) {
+                return res.status(409).json({ message: 'Esse email ja está em uso' })
             }
 
             const isMatch = await verifyPassword(password, storedPassword);
@@ -78,7 +78,7 @@ const userController = {
     changePassword: async (req, res, next) => {
         try {
             const { id } = req.params;
-            const { currentPassword, newPassword} = req.body;
+            const { currentPassword, newPassword } = req.body;
 
             const user = await userModel.getUserById(id);
             const storedPassword = user.password;

@@ -12,6 +12,7 @@ const taskService = {
             return response.data;
         } catch (e) {
             alert('Não foi possivel adicionar tarefa.');
+            return false
         }
     },
 
@@ -22,6 +23,7 @@ const taskService = {
             return response.data; 
         } catch (error) {
             alert('Erro ao editar tarefa');
+            return false
         }
     },
 
@@ -31,6 +33,7 @@ const taskService = {
             return response.data;
         } catch (error) {
             alert('Erro ao deletar tarefa');
+            return false
         }
     },
 
@@ -40,6 +43,7 @@ const taskService = {
             return response.data;
         } catch (e) {
             alert('Erro ao buscar tarefas por usuário');
+            return false
         }
     }
 };

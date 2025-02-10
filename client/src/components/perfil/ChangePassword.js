@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
 import userService from '../../services/userService';
@@ -8,6 +9,7 @@ export default function ChangePassword({ setCurrentForm }) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
     const { user } = useAuth();
+    const navigate = useNavigate();
 
     const submit = async (e) => {
         e.preventDefault();
@@ -21,7 +23,8 @@ export default function ChangePassword({ setCurrentForm }) {
         );
 
         if(changePassword) {
-            authService.logout();
+            await authService.logout();
+            navigate('');
             return;
         }
 

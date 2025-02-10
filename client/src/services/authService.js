@@ -7,15 +7,14 @@ const authService = {
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert('Não foi possivel realizar login');
+            alert('Não foi possivel realizar login:');
             return false;
         }
     },
 
     logout: async () => {
         try {
-            const response = await api.post('/auth/logout');
-            alert(response.data.message);
+            await api.post('/auth/logout');
             return true;
         } catch (e) {
             alert('Não foi possivel realizar logout');
@@ -29,7 +28,7 @@ const authService = {
             alert(response.data.message);
             return true;
         } catch (e) {
-            alert(e.response.data.message);
+            alert('Não foi possivel registrar o usuário');
             return false
         }
     },

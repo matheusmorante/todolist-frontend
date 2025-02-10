@@ -3,14 +3,14 @@ import { useAuth } from '../../context/AuthContext';
 import userService from '../../services/userService';
 
 export default function ChangeUsername({ setCurrentForm }) {
-    const [username, setUsername] = useState('');
+    const [newUsername, setNewUsername] = useState('');
     const [password, setPassword] = useState('');
     const { user } = useAuth();
 
     const submit = async (e) => {
         e.preventDefault();
         const changeUsername = await userService.changeUsername(
-            { username, password, id: user.id }
+            { newUsername, password, id: user.id }
         );
 
         if(changeUsername) {
@@ -26,7 +26,7 @@ export default function ChangeUsername({ setCurrentForm }) {
                 <i className='bi bi-x-lg' onClick={() => setCurrentForm('')} />
             </div>
             <label>Novo nome de usuário</label>
-            <input value={username} onChange={e => setUsername(e.target.value)} />
+            <input value={newUsername} onChange={e => setNewUsername(e.target.value)} />
             <label>Senha</label>
             <input value={password} onChange={e => setPassword(e.target.value)} />
             <button onClick={submit}>Concluir</button>

@@ -33,7 +33,7 @@ const authController = {
         try {
             req.session.destroy(() => {
                 res.clearCookie("connect.sid");
-                res.status(200).json({ message: "Logout realizado com sucesso" });
+                res.status(200);
             });
         } catch (error) {
             next(error);
