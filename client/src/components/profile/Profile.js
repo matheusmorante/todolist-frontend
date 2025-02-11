@@ -5,26 +5,28 @@ import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
 import { useNavigate } from "react-router-dom";
 
-export default function Perfil({ user}) {
+export default function Perfil({ user, setShowProfile }) {
     const [currentForm, setCurrentForm] = useState('');
     const navigate = useNavigate();
 
-    const logout = async () => {
-        await authService.logout();
-        navigate('/login');
+    const logout = () => {
+        navigate('');
+        authService.logout();
+       
     }
 
     return (
         <>
             <div>
-                <h1>{user.name}</h1>
-                <ul>
-                    <li onClick={() => setCurrentForm('changeUsername')}>Alterar nome do usuário</li>
-                    <li onClick={() => setCurrentForm('changeEmail')}>Alterar email</li>
-                    <li onClick={() => setCurrentForm('changePassword')}>Alterar senha</li>
-                    <li onClick={logout}>Logout</li>
-                </ul>
+                <i  className='bi bi-x-lg' onClick={() => setShowProfile(false)}/>
             </div>
+            <h1>{user.name}</h1>
+            <ul>
+                <li onClick={() => setCurrentForm('changeUsername')}>Alterar nome do usuário</li>
+                <li onClick={() => setCurrentForm('changeEmail')}>Alterar email</li>
+                <li onClick={() => setCurrentForm('changePassword')}>Alterar senha</li>
+                <li onClick={logout}>Logout</li>
+            </ul>
             {
                 currentForm === 'changeUsername' && <ChangeUsername setCurrentForm={setCurrentForm} />
             }

@@ -5,9 +5,11 @@ import EditTask from './EditTask';
 import { useTask } from '../../context/TaskContext'
 import sort from '../../utils/sort';
 
+
 export default function Tasks() {
     const { tasks, editingTask, filter, setFilter } = useTask();
     const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
+
 
     const sortedTasks = sort(tasks, sortConfig.key, sortConfig.direction);
 

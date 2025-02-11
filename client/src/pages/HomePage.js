@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
-import Tasks from "../components/tasks/Tasks";
-import Perfil from "../components/perfil/Perfil";
+import Tasks from "../components/tasks/Tasks"; 
 import userService from "../services/userService";
 import { TaskProvider } from "../context/TaskContext";
 import { useAuth } from "../context/AuthContext";
@@ -11,7 +10,7 @@ export default function HomePage() {
     const navigate = useNavigate();
     const { user, setUser } = useAuth();
     const [loading, setLoading] = useState(true);
-
+   
     useEffect(() => {
         const checkAuth = async () => {
             const sessionUser = await userService.getSessionUser();
@@ -37,11 +36,11 @@ export default function HomePage() {
 
     return (
         <>
-            <Header />
-            <TaskProvider userId={user.id}>
+            <Header/>
+            <TaskProvider>
                 <Tasks />
             </TaskProvider>
-            <Perfil user={user} setUser={setUser}/>
+            
         </>
     )
 }

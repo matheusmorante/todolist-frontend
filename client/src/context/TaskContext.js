@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import taskService from '../services/taskService';
+import { useAuth } from "../context/AuthContext";
 
 export const TaskContext = createContext();
 
@@ -7,17 +8,18 @@ export const TaskProvider = ({ children, userId }) => {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState('');
     const [editingTask, setEditingTask] = useState(null);
+    const { user} = useAuth();
 
     const fetchTasks = useCallback(async () => {
-        const data = await taskService.getTasksByUserId(userId);
+        const data = await taskService.getTasksByUserId(user.id);
         setTasks(data || []);
-    }, [userId]);
+    }, [user.id]);
     
     useEffect(() => {
-        if (userId) {
+        if (user.id) {
             fetchTasks();
         }
-    }, [fetchTasks, userId]);
+    }, [fetchTasks, user.id]);
 
     return (
         <TaskContext.Provider 
