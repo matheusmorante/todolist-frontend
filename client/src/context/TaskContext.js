@@ -4,17 +4,18 @@ import { useAuth } from "../context/AuthContext";
 
 export const TaskContext = createContext();
 
-export const TaskProvider = ({ children, userId }) => {
+export const TaskProvider = ({ children }) => {
     const [tasks, setTasks] = useState([]);
+    const [tasksHandled, setTasksHandled] = useState([]);
     const [filter, setFilter] = useState('');
     const [editingTask, setEditingTask] = useState(null);
-    const { user} = useAuth();
+    const { user } = useAuth();
 
     const fetchTasks = useCallback(async () => {
         const data = await taskService.getTasksByUserId(user.id);
         setTasks(data || []);
     }, [user.id]);
-    
+
     useEffect(() => {
         if (user.id) {
             fetchTasks();
@@ -22,8 +23,19 @@ export const TaskProvider = ({ children, userId }) => {
     }, [fetchTasks, user.id]);
 
     return (
-        <TaskContext.Provider 
-            value={{ tasks, fetchTasks, editingTask, setEditingTask, filter, setFilter }}
+        <TaskContext.Provider
+            value={
+                {
+                    tasks,
+                    fetchTasks,
+                    tasksHandled,
+                    setTasksHandled,
+                    editingTask,
+                    setEditingTask,
+                    filter,
+                    setFilter
+                }
+            }
         >
             {children}
         </TaskContext.Provider>

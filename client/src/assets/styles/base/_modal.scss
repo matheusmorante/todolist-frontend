@@ -1,0 +1,9 @@
+@import './variables';
+
+.modal {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    color: black;
+    background-color: $bg-1;
+}

@@ -16,7 +16,7 @@ export default function Perfil({ user, setShowProfile }) {
     }
 
     return (
-        <>
+        <div className='modal'>
             <div>
                 <i  className='bi bi-x-lg' onClick={() => setShowProfile(false)}/>
             </div>
@@ -36,6 +36,6 @@ export default function Perfil({ user, setShowProfile }) {
             {
                 currentForm === 'changeEmail' && <ChangeEmail setCurrentForm={setCurrentForm} />
             }
-        </>
+        </div>
     )
 }
