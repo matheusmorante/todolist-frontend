@@ -4,6 +4,7 @@ import AddTask from './AddTask';
 import EditTask from './EditTask';
 import { useTask } from '../../context/TaskContext'
 import TasksConfig from './tasksConfig';
+import TasksPagination from './TasksPagination';
 
 
 export default function Tasks() {
@@ -24,6 +25,7 @@ export default function Tasks() {
                     <Task task={task} />
                 ))}
             </table>
+            <TasksPagination/>
         </section>
     )
 }

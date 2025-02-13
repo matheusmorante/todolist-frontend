@@ -4,10 +4,11 @@ import sort from '../../utils/sort';
 import { handleTasks } from '../../utils/handleTasks';
 
 export default function TasksConfig() {
-    const { tasks, setTasksHandled, filter, setFilter } = useTask();
-    const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
-    const [taskPerPage, setTaskPerPage] = useState('20');
-    const [currentPage, setCurrentPage] = useState(1);
+    const {
+        tasks, setTasksHandled, filter, setFilter,
+        setTaskPerPage, sortConfig, setSortConfig
+    } = useTask();
+
 
     useEffect(() => {
         setTasksHandled(handleTasks(tasks, filter, sortConfig));
@@ -19,8 +20,6 @@ export default function TasksConfig() {
             return { ...prevConfig, direction: newDirection };
         }))
     }
-
-    
 
     return (
         <div>

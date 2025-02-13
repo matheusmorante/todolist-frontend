@@ -22,8 +22,8 @@ export default function Task({ task }) {
             <td>{task.description}</td>
             <td>{task.date}</td>
             <td>
-                <i onClick={() => setEditingTask(task)} class="bi bi-pencil" />
-                <i onClick={deleteTask} class="bi bi-trash3" />
+                <i onClick={() => setEditingTask(task)} className="bi bi-pencil" />
+                <i onClick={deleteTask} className="bi bi-trash3" />
             </td>
         </tr>
 
