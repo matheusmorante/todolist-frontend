@@ -3,8 +3,8 @@ import Task from './Task';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
 import { useTask } from '../../context/TaskContext'
-import TasksConfig from './tasksConfig';
 import TasksPagination from './TasksPagination';
+import TasksToolBar from './TasksToolBar';
 
 
 export default function Tasks() {
@@ -16,7 +16,7 @@ export default function Tasks() {
         <section>
             <h1>Tarefas</h1>
            
-           <TasksConfig />
+           <TasksToolBar />
             <table>
                 {editingTask ? (
                     <EditTask />

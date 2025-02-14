@@ -16,8 +16,8 @@ export const TaskProvider = ({ children }) => {
     const [paginatedTasks, setPaginatedTasks]= useState([])
     const { user } = useAuth();
 
-    const firstTaskOfPage = currentPage * tasksPerPage;
-    const lastTaskOfPage = firstTaskOfPage + tasksPerPage;
+    const lastTaskOfPage = currentPage * tasksPerPage;
+    const firstTaskOfPage = lastTaskOfPage - tasksPerPage;
 
     const fetchTasks = useCallback(async () => {
         const data = await taskService.getTasksByUserId(user.id);

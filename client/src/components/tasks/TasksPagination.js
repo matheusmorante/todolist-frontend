@@ -16,7 +16,6 @@ export default function TasksPagination() {
                 <i class="bi bi-chevron-right"/>
                 Próximo
             </div>
-            {tasksPerPage}
         </div>
     )
 

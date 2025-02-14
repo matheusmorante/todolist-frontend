@@ -1,6 +1,6 @@
 import { useTask } from '../../context/TaskContext';
 
-export default function TasksConfig() {
+export default function TasksToolBar() {
     const {
         filter, setFilter, setTasksPerPage,
         sortConfig, setSortConfig
