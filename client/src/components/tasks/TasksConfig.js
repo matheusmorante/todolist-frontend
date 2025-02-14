@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react';
 import { useTask } from '../../context/TaskContext';
-import sort from '../../utils/sort';
-import { handleTasks } from '../../utils/handleTasks';
 
 export default function TasksConfig() {
     const {
-        tasks, setTasksHandled, filter, setFilter,
-        setTaskPerPage, sortConfig, setSortConfig
+        filter, setFilter, setTasksPerPage,
+        sortConfig, setSortConfig
     } = useTask();
-
-
-    useEffect(() => {
-        setTasksHandled(handleTasks(tasks, filter, sortConfig));
-    }, [tasks, filter, sortConfig]);
 
     const changeDirection = () => {
         setSortConfig((prevConfig => {
@@ -23,7 +15,7 @@ export default function TasksConfig() {
 
     return (
         <div>
-            <select onChange={(e) => setTaskPerPage(e.target.value)}>
+            <select onChange={(e) => setTasksPerPage(e.target.value)}>
                 <option value='5'>5</option>
                 <option value='10'>10</option>
                 <option value='20' selected>20</option>

@@ -8,7 +8,9 @@ import TasksPagination from './TasksPagination';
 
 
 export default function Tasks() {
-    const {tasksHandled, editingTask } = useTask();
+    const {tasks, editingTask, pageTasks, currentPage, tasksPerPage} = useTask();
+
+    
 
     return (
         <section>
@@ -21,7 +23,7 @@ export default function Tasks() {
                 ) : (
                     <AddTask />
                 )}
-                {tasksHandled.map(task => (
+                {tasks.map(task => (
                     <Task task={task} />
                 ))}
             </table>

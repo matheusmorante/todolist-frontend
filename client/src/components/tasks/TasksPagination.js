@@ -1,37 +1,23 @@
-import { useState, useEffect } from 'react';
 import { useTask } from '../../context/TaskContext';
-import ReactPaginate from "react-paginate";
+
 
 export default function TasksPagination() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const { tasks, tasksHandled, tasksPerPage, setTasks } = useTask();
+    const { tasks, tasksPerPage, currentPage, setCurrentPage } = useTask();
 
-    useEffect(() => {
-        setTasks(
-            tasks.slice(offset, offset + tasksPerPage)
-        );
-    }, [setTasks, tasksPerPage]);
-
-    const offset = (currentPage - 1) * tasksPerPage;
-
-    const pageCount = Math.ceil(tasksHandled.length / tasksPerPage);
-
-    const handlePageClick = ({ selected }) => {
-        setCurrentPage(selected);
-    };
-
+    const totalPages = Math.ceil(tasks.length / tasksPerPage);
     return (
-        <ReactPaginate
-            previousLabel={"← Anterior"}
-            nextLabel={"Próximo →"}
-            breakLabel={"..."}
-            pageCount={pageCount}
-            marginPagesDisplayed={2}
-            pageRangeDisplayed={3}
-            onPageChange={handlePageClick}
-            containerClassName={"pagination"}
-            activeClassName={"active"}
-        />
+        <div>
+            <div onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>
+                <i class="bi bi-chevron-left"></i>
+                Anterior
+            </div>
+            <div>{currentPage + '/' + totalPages}</div>
+            <div onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}>
+                <i class="bi bi-chevron-right"/>
+                Próximo
+            </div>
+            {tasksPerPage}
+        </div>
     )
 
 }
