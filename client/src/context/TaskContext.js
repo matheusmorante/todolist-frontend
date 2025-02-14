@@ -13,6 +13,7 @@ export const TaskProvider = ({ children }) => {
     const [editingTask, setEditingTask] = useState(null);
     const [tasksPerPage, setTasksPerPage] = useState(20);
     const [currentPage, setCurrentPage] = useState(1);
+    const [paginatedTasks, setPaginatedTasks]= useState([])
     const { user } = useAuth();
 
     const firstTaskOfPage = currentPage * tasksPerPage;
@@ -21,13 +22,12 @@ export const TaskProvider = ({ children }) => {
     const fetchTasks = useCallback(async () => {
         const data = await taskService.getTasksByUserId(user.id);
         if (data) {
+            setTasks(data);
             const paginatedTasks = data.slice(firstTaskOfPage, lastTaskOfPage);
-            const tasksHandled = handleTasks(paginatedTasks, filter, sortConfig);
-            setTasks(tasksHandled);
-            
+            setPaginatedTasks(handleTasks(paginatedTasks, filter, sortConfig));
         }
         
-    }, [user.id]);
+    }, [user.id, firstTaskOfPage, lastTaskOfPage, filter, sortConfig]);
 
     useEffect(() => {
         if (user.id) {
@@ -41,7 +41,8 @@ export const TaskProvider = ({ children }) => {
                 {
                     tasks, fetchTasks, editingTask, setEditingTask,
                     filter, setFilter, sortConfig, setSortConfig,
-                    tasksPerPage, setTasksPerPage, currentPage, setCurrentPage
+                    tasksPerPage, setTasksPerPage, currentPage,
+                     setCurrentPage, paginatedTasks
                 }
             }
         >

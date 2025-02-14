@@ -8,7 +8,7 @@ import TasksPagination from './TasksPagination';
 
 
 export default function Tasks() {
-    const {tasks, editingTask, pageTasks, currentPage, tasksPerPage} = useTask();
+    const {editingTask, paginatedTasks} = useTask();
 
     
 
@@ -23,7 +23,7 @@ export default function Tasks() {
                 ) : (
                     <AddTask />
                 )}
-                {tasks.map(task => (
+                {paginatedTasks.map(task => (
                     <Task task={task} />
                 ))}
             </table>
