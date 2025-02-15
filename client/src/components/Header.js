@@ -8,9 +8,7 @@ export default function Header() {
 
     return (
         <header>
-            Tarefando
             <h1 onClick={() => setShowProfile(true)}>Perfil</h1>
-
             {showProfile && <Perfil user={user} setShowProfile={setShowProfile} />}
         </header>
     )

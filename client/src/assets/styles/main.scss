@@ -8,13 +8,17 @@ body {
     margin: 0;
     padding: 0;
 
-    .app {
-        width: 100%;
-        & > * {
+    & > div {
+        padding: 0 5%;
+    }
+
+    @include desktop() {
+        & > div {
             padding: 0 10%;
-            display: flex;
-            justify-content: center;
         }
     }
 }
 
+h1  {
+    margin: 0;
+}
