@@ -1,24 +1,32 @@
 @import './components/header';
 @import './components/tasks';
 @import './base/variables';
+@import './base/mixins';
 @import './pages/login_page';
 @import './base/modal';
 
 body {
     margin: 0;
     padding: 0;
+ 
 
-    & > div {
-        padding: 0 5%;
-    }
-
-    @include desktop() {
-        & > div {
-            padding: 0 10%;
+    .App {
+    
+        &>* {
+            padding: 0 5%;
         }
     }
-}
 
-h1  {
-    margin: 0;
+    h3 {
+        margin: 0;
+    }
+
+    @include tablet() {
+        .App {
+            &>* {
+                padding: 0 10%;
+            }
+        }
+    }
+
 }

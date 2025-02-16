@@ -1,3 +1,34 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+#table {
+   
+   
+
+    @include tablet() {
+        width: 400px;
+        margin: 0 auto;
+    }
+}
+
+table {
+    //border-collapse: collapse;
+    border-spacing: 0 5px;
+    border-radius: 7px;
+    tr {
+        background-color: $bg-1;
+
+    }
+
+    @include tablet() {
+        border-spacing: 0 10px;
+    }
+}
+
+#tasks-toolbar {
+    justify-content: space-around;
+}
+
 .task-done {
     background-color: rgba(0, 0, 0, 0.283);
 }

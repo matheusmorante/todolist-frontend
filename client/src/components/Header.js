@@ -8,7 +8,7 @@ export default function Header() {
 
     return (
         <header>
-            <h1 onClick={() => setShowProfile(true)}>Perfil</h1>
+            <h3 onClick={() => setShowProfile(true)}>Perfil</h3>
             {showProfile && <Perfil user={user} setShowProfile={setShowProfile} />}
         </header>
     )

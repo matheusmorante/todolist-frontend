@@ -1,11 +1,17 @@
 @import '../base/variables';
+@import '../base/mixins';
 
 header {
     display: flex;
-    padding: 10px;
+   
     align-items: center;
-    justify-content: space-between;
+    justify-content: right;
     background-color: $bg-1;
     color: white;
+
+    @include tablet() {
+        padding: 0 15px;
+    }
+   
     
 }

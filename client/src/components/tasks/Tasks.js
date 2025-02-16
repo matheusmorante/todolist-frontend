@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+
 import Task from './Task';
 import AddTask from './AddTask';
 import EditTask from './EditTask';
 import { useTask } from '../../context/TaskContext'
 import TasksPagination from './TasksPagination';
-import TasksToolBar from './TasksToolBar';
+import TasksToolbar from './TasksToolbar';
 
 
 export default function Tasks() {
@@ -16,8 +16,8 @@ export default function Tasks() {
         <section>
             <h1>Tarefas</h1>
            
-           <TasksToolBar />
-            <table>
+           <TasksToolbar />
+            <table id='tasks-table'>
                 {editingTask ? (
                     <EditTask />
                 ) : (

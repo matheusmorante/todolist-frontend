@@ -1,6 +1,6 @@
 import { useTask } from '../../context/TaskContext';
 
-export default function TasksToolBar() {
+export default function TasksToolbar() {
     const {
         filter, setFilter, setTasksPerPage,
         sortConfig, setSortConfig
@@ -14,7 +14,7 @@ export default function TasksToolBar() {
     }
 
     return (
-        <div>
+        <div id='tasks-toolbar'>
             <select onChange={(e) => setTasksPerPage(e.target.value)}>
                 <option value='5'>5</option>
                 <option value='10'>10</option>
