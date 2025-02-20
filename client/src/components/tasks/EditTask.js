@@ -19,15 +19,10 @@ export default function EditTask() {
     }
 
     return (
-        <tr>
-            <td colSpan={2}>
-                <input value={description} onChange={e => setDescription(e.target.value)} />
-            </td>
-            <td></td>
-            <td>
-                <i onClick={submit} className='bi bi-check' />
-                <i onClick={cancel} className='bi bi-x-lg' />
-            </td>
-        </tr>
+        <form>
+            <input value={description} onChange={e => setDescription(e.target.value)} />
+            <i onClick={submit} className='bi bi-check' />
+            <i onClick={cancel} className='bi bi-x-lg' />
+        </form>
     )
 }

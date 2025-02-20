@@ -9,24 +9,23 @@ body {
     margin: 0;
     padding: 0;
  
-
     .App {
     
         &>* {
-            padding: 0 5%;
+            padding: 0 10px;
         }
-    }
-
-    h3 {
-        margin: 0;
     }
 
     @include tablet() {
         .App {
             &>* {
-                padding: 0 10%;
+                padding: 0 100px;
             }
         }
     }
 
+}
+
+ul {
+    list-style: none;
 }

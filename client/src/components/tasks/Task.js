@@ -17,15 +17,15 @@ export default function Task({ task }) {
     }
 
     return (
-        <tr className={task.status === 'done' ? 'task-done' : ''}>
-            <td><i onClick={toogleStatus} className="bi bi-check" /></td>
-            <td>{task.description}</td>
-            <td>{task.date}</td>
-            <td>
+        <li className={task.status === 'done' ? 'done' : ''}>
+            <div><i onClick={toogleStatus} className="bi bi-check" /></div>
+            <div>{task.description}</div>
+            <div>{task.date}</div>
+            <div>
                 <i onClick={() => setEditingTask(task)} className="bi bi-pencil" />
                 <i onClick={deleteTask} className="bi bi-trash3" />
-            </td>
-        </tr>
+            </div>
+        </li>
 
     )
 }

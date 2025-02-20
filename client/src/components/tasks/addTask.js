@@ -4,7 +4,7 @@ import taskService from '../../services/taskService'
 
 export default function AddTask() {
     const { fetchTasks } = useTask();
-    const [ description, setDescription ] = useState('');
+    const [description, setDescription] = useState('');
 
     const submit = async () => {
         await taskService.addTask(description);
@@ -13,14 +13,10 @@ export default function AddTask() {
     }
 
     return (
-        <tr>
-            <td colSpan={2}>
-                <input value={description} onChange={e => setDescription(e.target.value)}/>
-            </td>
-            <td></td>
-            <td>
-                <i className='bi bi-plus' onClick={submit} />
-            </td>
-        </tr>
+        <form id='add-task-form'>
+            <input value={description} onChange={e => setDescription(e.target.value)} />
+            <i className='bi bi-plus' onClick={submit} />
+
+        </form>
     )
 }

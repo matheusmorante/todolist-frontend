@@ -1,34 +1,52 @@
 @import '../base/variables';
 @import '../base/mixins';
 
-#table {
-   
-   
 
-    @include tablet() {
-        width: 400px;
-        margin: 0 auto;
-    }
+#tasks-section form,
+#task-list li,
+#tasks-toolbar {
+    display: flex;
 }
 
-table {
-    //border-collapse: collapse;
-    border-spacing: 0 5px;
-    border-radius: 7px;
-    tr {
-        background-color: $bg-1;
+#tasks-section form,
+#task-list li {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: $bg-1;
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+}
 
-    }
+#tasks-section form {
+    gap: 10px;
 
-    @include tablet() {
-        border-spacing: 0 10px;
+    input {
+        width: 100%;
+        height: 20px;
     }
 }
 
 #tasks-toolbar {
-    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 10px 0;
+
+    span {
+        margin: 5px 0;
+
+        &>*{
+            margin: 0 5px;
+        }
+    }
 }
 
-.task-done {
-    background-color: rgba(0, 0, 0, 0.283);
+
+#task-list {
+    padding: 0;
+    margin: 0;
+    li {
+        margin-bottom: 15px;
+
+        &.done {
+            background-color: rgb(37, 37, 37);
+        }
+    }
 }

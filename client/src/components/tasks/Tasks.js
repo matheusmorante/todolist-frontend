@@ -13,20 +13,22 @@ export default function Tasks() {
     
 
     return (
-        <section>
+        <section id='tasks-section'>
             <h1>Tarefas</h1>
-           
-           <TasksToolbar />
-            <table id='tasks-table'>
-                {editingTask ? (
+
+            {editingTask ? (
                     <EditTask />
                 ) : (
                     <AddTask />
                 )}
+           
+           <TasksToolbar />
+          
+            <ul id='task-list'>
                 {paginatedTasks.map(task => (
                     <Task task={task} />
                 ))}
-            </table>
+            </ul>
             <TasksPagination/>
         </section>
     )
