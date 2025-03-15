@@ -3,15 +3,14 @@
 
 header {
     display: flex;
-   
     align-items: center;
     justify-content: right;
     background-color: $bg-1;
     color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
     @include tablet() {
-        padding: 0 15px;
+       
     }
-   
-    
 }

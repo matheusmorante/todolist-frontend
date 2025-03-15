@@ -1,0 +1,10 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+#profile {
+    width: 180px;
+    
+    h1 {
+        text-align: center;
+    }
+}

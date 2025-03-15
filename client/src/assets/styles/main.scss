@@ -1,31 +1,6 @@
-@import './components/header';
+@import './base/base';
 @import './components/tasks';
-@import './base/variables';
-@import './base/mixins';
 @import './pages/login_page';
 @import './base/modal';
-
-body {
-    margin: 0;
-    padding: 0;
- 
-    .App {
-    
-        &>* {
-            padding: 0 10px;
-        }
-    }
-
-    @include tablet() {
-        .App {
-            &>* {
-                padding: 0 100px;
-            }
-        }
-    }
-
-}
-
-ul {
-    list-style: none;
-}
+@import './components/profile';
+@import './components/header';

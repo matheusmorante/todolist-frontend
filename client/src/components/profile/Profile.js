@@ -16,7 +16,7 @@ export default function Perfil({ user, setShowProfile }) {
     }
 
     return (
-        <div className='modal'>
+        <div className='modal' id='profile'>
             <div>
                 <i  className='bi bi-x-lg' onClick={() => setShowProfile(false)}/>
             </div>

@@ -9,3 +9,7 @@
         @content;
     }
 }
+
+@mixin arrounded-border {
+    border-radius: 12px;
+}
