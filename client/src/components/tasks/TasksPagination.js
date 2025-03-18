@@ -6,14 +6,12 @@ export default function TasksPagination() {
 
     const totalPages = Math.ceil(tasks.length / tasksPerPage);
     return (
-        <div>
+        <div id='tasks-pagination'>
             <div onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}>
-                <i class="bi bi-chevron-left"></i>
                 Anterior
             </div>
             <div>{currentPage + '/' + totalPages}</div>
             <div onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}>
-                <i class="bi bi-chevron-right"/>
                 Próximo
             </div>
         </div>

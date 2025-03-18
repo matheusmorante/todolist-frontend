@@ -10,8 +10,6 @@ import TasksToolbar from './TasksToolbar';
 export default function Tasks() {
     const {editingTask, paginatedTasks} = useTask();
 
-    
-
     return (
         <section id='tasks-section'>
             <h1>Tarefas</h1>

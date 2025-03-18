@@ -3,13 +3,14 @@ import taskService from '../services/taskService';
 import { useAuth } from "../context/AuthContext";
 import { handleTasks } from '../utils/handleTasks';
 
-
 export const TaskContext = createContext();
 
 export const TaskProvider = ({ children }) => {
     const [tasks, setTasks] = useState([]);
     const [filter, setFilter] = useState('');
-    const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
+    const [sortConfig, setSortConfig] = useState(
+        { key: 'description', direction: 'asc' }
+    );
     const [editingTask, setEditingTask] = useState(null);
     const [tasksPerPage, setTasksPerPage] = useState(20);
     const [currentPage, setCurrentPage] = useState(1);

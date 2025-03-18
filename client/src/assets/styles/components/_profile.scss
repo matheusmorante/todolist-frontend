@@ -3,8 +3,22 @@
 
 #profile {
     width: 180px;
-    
+    padding: 20px;
+    z-index: 1000;
+
     h1 {
         text-align: center;
+        margin: 10px 0
     }
-}
+
+    ul {
+       
+        li{
+            margin-top: 30px;
+        }
+
+        li:last-child{
+            margin-top: 30px;
+        }
+    }
+} 

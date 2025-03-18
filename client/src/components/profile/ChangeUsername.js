@@ -16,8 +16,6 @@ export default function ChangeUsername({ setCurrentForm }) {
         if(changeUsername) {
             setCurrentForm('');
         }
-
-     
     }
 
     return (

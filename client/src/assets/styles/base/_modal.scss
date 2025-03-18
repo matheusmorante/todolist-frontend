@@ -3,17 +3,11 @@
 
 .modal {
     display: block;
-    position: fixed;
-    top: 60px;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 10px;
     color: black;
     background-color: $bg-1;
     z-index: 1000;
-  
     @include arrounded-border;
-
     @include tablet() {}
 
     &>div:first-child {

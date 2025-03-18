@@ -18,10 +18,14 @@ export default function Task({ task }) {
 
     return (
         <li className={task.status === 'done' ? 'done' : ''}>
-            <div><i onClick={toogleStatus} className="bi bi-check" /></div>
-            <div>{task.description}</div>
-            <div>{task.date}</div>
-            <div>
+            <div id='check'>
+                <i onClick={toogleStatus} className="bi bi-check" />
+            </div>
+            <div id='text-container'>
+                <div id='description'>{task.description}</div>
+                <div id='date'>{task.date}</div>
+            </div>
+            <div id='actions'>
                 <i onClick={() => setEditingTask(task)} className="bi bi-pencil" />
                 <i onClick={deleteTask} className="bi bi-trash3" />
             </div>

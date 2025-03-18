@@ -1,5 +1,5 @@
 @mixin tablet {
-    @media (min-width: 768px){
+    @media (min-width: 768px) {
         @content;
     }
 }
@@ -12,4 +12,16 @@
 
 @mixin arrounded-border {
     border-radius: 12px;
+}
+
+@mixin responsive-font($mb-size, $tb-size, $dt-size) {
+    font-size: $mb-size;
+
+    @include tablet() {
+        font-size: $tb-size;
+    }
+
+    @include desktop() {
+        font-size: $dt-size;
+    }
 }
