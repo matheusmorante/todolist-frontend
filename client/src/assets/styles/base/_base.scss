@@ -9,6 +9,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-size: 16px;
 
     .App {
 
@@ -43,13 +44,39 @@ section {
 
 .overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+   inset: 0;
     background-color: rgba(0, 0, 0, 0.801);
     z-index: 999;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.fullscreen-form {
+    position: fixed;
+    inset: 0;
+    background-color: $bg-1;
+    padding: 10px;
+
+    &>div:first-child{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    
+    input, label, button {
+        margin: 0 50px 0 50px;
+    }
+
+    label, button{
+        margin-top: 5px;
+    }
+
+    button{
+        margin-top: 10px;
+    }
 }

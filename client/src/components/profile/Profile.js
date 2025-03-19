@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import authService from '../../services/authService';
-import ChangeUsername from './ChangeUsername';
-import ChangeEmail from './ChangeEmail';
-import ChangePassword from './ChangePassword';
+import ChangeUsernameForm from './ChangeUsernameForm';
+import ChangeEmailForm from './ChangeEmailForm';
+import ChangePasswordForm from './ChangePasswordForm';
 import { useNavigate } from "react-router-dom";
 
 export default function Perfil({ user, showProfile, setShowProfile }) {
@@ -28,7 +28,7 @@ export default function Perfil({ user, showProfile, setShowProfile }) {
 
     return (
         <div className='overlay' onClick={() => setShowProfile(false)}> 
-            <div className='modal' id='profile'>
+            <div className='modal' id='profile' onClick={e => e.stopPropagation()}>
                 <div>
                     <i className='bi bi-x-lg' onClick={() => setShowProfile(false)} />
                 </div>
@@ -40,13 +40,13 @@ export default function Perfil({ user, showProfile, setShowProfile }) {
                     <li onClick={logout}>Logout</li>
                 </ul>
                 {
-                    currentForm === 'changeUsername' && <ChangeUsername setCurrentForm={setCurrentForm} />
+                    currentForm === 'changeUsername' && <ChangeUsernameForm setCurrentForm={setCurrentForm} />
                 }
                 {
-                    currentForm === 'changePassword' && <ChangePassword setCurrentForm={setCurrentForm} />
+                    currentForm === 'changePassword' && <ChangePasswordForm setCurrentForm={setCurrentForm} />
                 }
                 {
-                    currentForm === 'changeEmail' && <ChangeEmail setCurrentForm={setCurrentForm} />
+                    currentForm === 'changeEmail' && <ChangeEmailForm setCurrentForm={setCurrentForm} />
                 }
             </div>
         </div>

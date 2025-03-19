@@ -2,28 +2,35 @@ import React, { useState } from 'react'
 import { useAuth } from '../../context/AuthContext';
 import userService from '../../services/userService';
 
-export default function ChangeEmail({ setCurrentForm }) {
-    const [newEmail, setNewEmail] = useState('');
+export default function ChangeUsernameForm({ setCurrentForm }) {
+    const [newUsername, setNewUsername] = useState('');
     const [password, setPassword] = useState('');
     const { user } = useAuth();
 
     const submit = async (e) => {
         e.preventDefault();
-        await userService.changeEmail({ newEmail, password, id: user.id });
+        const changeUsername = await userService.changeUsername(
+            { newUsername, password, id: user.id }
+        );
 
-        setCurrentForm('');
+        if (changeUsername) {
+            setCurrentForm('');
+        }
     }
 
     return (
-        <form>
+        <form className='fullscreen-form form'>
             <div>
                 <i className='bi bi-x-lg' onClick={() => setCurrentForm('')} />
             </div>
-            <label>Novo email</label>
-            <input value={newEmail} onChange={e => setNewEmail(e.target.value)} />
+
+            <label>Novo nome de usuário</label>
+            <input value={newUsername} onChange={e => setNewUsername(e.target.value)} />
+
             <label>Senha</label>
             <input value={password} onChange={e => setPassword(e.target.value)} />
-          <button onClick={submit}>Concluir</button>
+
+            <button onClick={submit}>Concluir</button>
         </form>
     )
 }

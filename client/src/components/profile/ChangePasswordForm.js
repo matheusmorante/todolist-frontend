@@ -4,7 +4,7 @@ import { useAuth } from '../../context/AuthContext';
 import authService from '../../services/authService';
 import userService from '../../services/userService';
 
-export default function ChangePassword({ setCurrentForm }) {
+export default function ChangePasswordForm({ setCurrentForm }) {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
@@ -32,7 +32,7 @@ export default function ChangePassword({ setCurrentForm }) {
     }
 
     return (
-        <form>
+        <form className='fullscreen-form form'>
             <div>
                 <i className='bi bi-x-lg' onClick={() => setCurrentForm('')} />
             </div>

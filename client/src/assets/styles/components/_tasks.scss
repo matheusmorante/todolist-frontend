@@ -46,8 +46,6 @@
         align-items: center;
         gap: 10px;
         margin-bottom: 15px;
-   
-        #check {}
 
         #text-container {
             display: flex;
@@ -56,12 +54,10 @@
             overflow: hidden;
 
             #description {
-          
                 word-wrap: break-word;
                 overflow-wrap: break-word;
                 white-space: normal;
                 max-width: 100%;
-               
             }
 
             #date {
