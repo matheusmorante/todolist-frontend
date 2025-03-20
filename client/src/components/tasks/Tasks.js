@@ -1,7 +1,7 @@
 
 import Task from './Task';
-import AddTask from './AddTask';
-import EditTask from './EditTask';
+import AddTaskForm from './AddTaskForm';
+import EditTaskForm from './EditTaskForm';
 import { useTask } from '../../context/TaskContext'
 import TasksPagination from './TasksPagination';
 import TasksToolbar from './TasksToolbar';
@@ -15,9 +15,9 @@ export default function Tasks() {
             <h1>Tarefas</h1>
 
             {editingTask ? (
-                    <EditTask />
+                    <EditTaskForm />
                 ) : (
-                    <AddTask />
+                    <AddTaskForm />
                 )}
            
            <TasksToolbar />

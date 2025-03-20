@@ -1,22 +1,15 @@
 import './assets/styles/main.scss';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import HomePage from './pages/HomePage';
-import { AuthProvider } from './context/AuthContext';
+import Header from "./components/Header";
+import Tasks from "./components/tasks/Tasks";
+import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   return (
     <div className="App">
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <Header />
+      <TaskProvider>
+        <Tasks />
+      </TaskProvider>
     </div>
   );
 }
