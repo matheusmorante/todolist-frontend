@@ -73,7 +73,11 @@
         }
 
         &.done {
-            background-color: rgb(37, 37, 37);
+            background: rgba(255, 202, 56, 0.815);
+            /* Transparência */
+            backdrop-filter: blur(60px);
+            /* Desfoque */
+            -webkit-backdrop-filter: blur(50px);
         }
     }
 }

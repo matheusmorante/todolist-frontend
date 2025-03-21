@@ -1,0 +1,18 @@
+@import './variables';
+@import './mixins';
+
+.modal {
+  display: block;
+  padding: 10px;
+  color: black;
+  background-color: $bg-1;
+  z-index: 1000;
+  @include arrounded-border;
+  @include tablet();
+
+  & > div:first-child {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+    

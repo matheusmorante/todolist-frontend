@@ -1,6 +1,6 @@
 import './assets/styles/main.scss';
 import Header from "./components/Header";
-import Tasks from "./components/tasks/Tasks";
+import TodoList from "./components/tasks/TodoList";
 import { TaskProvider } from "./context/TaskContext";
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
       <Header />
       <TaskProvider>
-        <Tasks />
+        <TodoList />
       </TaskProvider>
     </div>
   );

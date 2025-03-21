@@ -6,8 +6,13 @@ export default function Task({ task }) {
     const { setEditingTask, editTask, deleteTask } = useTask();
 
     const toogleStatus = async () => {
-        const newStatus = !task.done;
-        editTask(task.id, task.description, newStatus);
+        const newTask = {
+            id: task.id,
+            description: task.description,
+            done: !task.done,
+        };
+
+        editTask(newTask);
     }
 
     const onDeleteTask = async () => {
@@ -15,9 +20,9 @@ export default function Task({ task }) {
     }
 
     return (
-        <li className={task.done === 'done' ? 'done' : ''}>
+        <li className={task.done === true ? 'done' : ''}>
             <div id='check'>
-                <i onClick={toogleStatus} className="bi bi-check" />
+                <i onClick={toogleStatus} className={task.done === true ? 'bi bi-check-square' : 'bi bi-square'} />
             </div>
             <div id='text-container'>
                 <div id='description'>{task.description}</div>

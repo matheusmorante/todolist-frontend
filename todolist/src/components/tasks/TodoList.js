@@ -1,19 +1,21 @@
-
 import Task from './Task';
 import AddTaskForm from './AddTaskForm';
 import EditTaskForm from './EditTaskForm';
 import { useTask } from '../../context/TaskContext'
 import TasksPagination from './TasksPagination';
 import TasksToolbar from './TasksToolbar';
+import Error from '../Error'
+import Success from '../Success';
 
-
-export default function Tasks() {
-    const {editingTask, paginatedTasks} = useTask();
+export default function TodoList() {
+    const {editingTask, paginatedTasks, error, success} = useTask();
 
     return (
         <section id='tasks-section'>
             <h1>Tarefas</h1>
 
+            {error && <Error errorText={error}/>}
+            {success && <Success successText={success}/>}
             {editingTask ? (
                     <EditTaskForm />
                 ) : (

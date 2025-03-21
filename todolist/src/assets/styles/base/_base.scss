@@ -12,26 +12,28 @@ body {
     font-size: 16px;
 
     .App {
-
         &>* {
             padding-left: 10px;
             padding-right: 10px;
         }
-    }
 
-    @include tablet() {
-        .App {
+        @include tablet() {
             &>* {
                 padding-left: 100px;
                 padding-right: 100px;
             }
         }
     }
-
 }
 
 ul {
     list-style: none;
+}
+
+i {
+    display: flex;
+    align-items: center;
+    @include responsive-font(18px, 20px, 22px)
 }
 
 section {
@@ -44,7 +46,7 @@ section {
 
 .overlay {
     position: fixed;
-   inset: 0;
+    inset: 0;
     background-color: rgba(0, 0, 0, 0.801);
     z-index: 999;
     display: flex;
@@ -58,25 +60,27 @@ section {
     background-color: $bg-1;
     padding: 10px;
 
-    &>div:first-child{
+    &>div:first-child {
         display: flex;
         justify-content: flex-end;
     }
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
     
-    input, label, button {
-        margin: 0 50px 0 50px;
-    }
+}
 
-    label, button{
-        margin-top: 5px;
-    }
+.alert {
+    padding: 10px;
+    margin: 10px 0;
+    color: white;
+    font-weight: bold;
+}
 
-    button{
-        margin-top: 10px;
-    }
+.success {
+    background-color: rgb(6, 163, 6);
+}
+
+.error {
+    background-color: rgb(206, 2, 2);
 }

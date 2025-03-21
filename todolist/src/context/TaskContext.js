@@ -13,7 +13,9 @@ export const TaskProvider = ({ children }) => {
     const [editingTask, setEditingTask] = useState(null);
     const [tasksPerPage, setTasksPerPage] = useState(20);
     const [currentPage, setCurrentPage] = useState(1);
-    const [paginatedTasks, setPaginatedTasks] = useState([])
+    const [paginatedTasks, setPaginatedTasks] = useState([]);
+    const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
     useEffect(() => {
         try {
@@ -36,10 +38,14 @@ export const TaskProvider = ({ children }) => {
 
     const addTask = (newTask) => {
         setTasks([...tasks, newTask]);
+        setSuccess('Tarefa adicionada com sucesso!');
+        setTimeout(() => setSuccess(null), 3000);
     };
 
     const editTask = (updatedTask) => {
         setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task))
+        setSuccess('Tarefa editada com sucesso!');
+        setTimeout(() => setSuccess(null), 3000);
     }
 
     const deleteTask = (taskId) => {
@@ -65,6 +71,10 @@ export const TaskProvider = ({ children }) => {
                 addTask,
                 editTask,
                 deleteTask,
+                error,
+                setError,
+                success,
+                setSuccess
             }}
         >
             {children}

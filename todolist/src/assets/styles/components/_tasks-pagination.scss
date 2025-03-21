@@ -1,0 +1,22 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+#tasks-pagination {
+    justify-content: end;
+
+    &, div {
+        display: flex;
+        gap: 10px
+    }
+
+    div {
+        background-color: $bg-1;
+        padding: 10px;
+    }
+
+    div:nth-child(1):hover, div:nth-child(3):hover {
+        background-color: $bg-2;
+    } 
+
+
+}
