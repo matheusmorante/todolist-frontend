@@ -6,7 +6,8 @@ export default function AddTask() {
     const { addTask, setError} = useTask();
     const [description, setDescription] = useState('');
 
-    const submit = async () => {
+    const submit = async e => {
+        e.preventDefault();
         const newTask = {
             id: Date.now(),
             description: description,
@@ -16,6 +17,7 @@ export default function AddTask() {
        
         if(error) {
              setError(error);
+             setTimeout(() => setError(null), 3000);
              return false
         }
 
@@ -25,9 +27,10 @@ export default function AddTask() {
     }
 
     return (
-        <form id='add-task-form' className='form'>
+        <form id='add-task-form' className='form' onSubmit={submit}>
             <input value={description} onChange={e => setDescription(e.target.value)} />
-            <i className="bi bi-plus" type="submit" onClick={submit} />
+            <button type='submit'><i className="bi bi-plus-lg" /></button>
+            
         </form>
     )
 }

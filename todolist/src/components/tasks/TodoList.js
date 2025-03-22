@@ -7,29 +7,30 @@ import TasksToolbar from './TasksToolbar';
 import Error from '../Error'
 import Success from '../Success';
 
-export default function TodoList() {
-    const {editingTask, paginatedTasks, error, success} = useTask();
+export default function Todolist() {
+    const { editingTask, paginatedTasks, error, success } = useTask();
 
     return (
-        <section id='tasks-section'>
+        <section>
             <h1>Tarefas</h1>
 
-            {error && <Error errorText={error}/>}
-            {success && <Success successText={success}/>}
+            {error && <Error errorText={error} />}
+            {success && <Success successText={success} />}
+
             {editingTask ? (
-                    <EditTaskForm />
-                ) : (
-                    <AddTaskForm />
-                )}
-           
-           <TasksToolbar />
-          
-            <ul id='task-list'>
+                <EditTaskForm />
+            ) : (
+                <AddTaskForm />
+            )}
+
+            <TasksToolbar />
+
+            <ul id='todolist'>
                 {paginatedTasks.map(task => (
                     <Task task={task} />
                 ))}
             </ul>
-            <TasksPagination/>
+            <TasksPagination />
         </section>
     )
 }

@@ -1,14 +1,12 @@
 import './assets/styles/main.scss';
-import Header from "./components/Header";
-import TodoList from "./components/tasks/TodoList";
+import Todolist from "./components/tasks/Todolist";
 import { TaskProvider } from "./context/TaskContext";
 
 function App() {
   return (
     <div className="App">
-      <Header />
       <TaskProvider>
-        <TodoList />
+        <Todolist />
       </TaskProvider>
     </div>
   );

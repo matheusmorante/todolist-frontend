@@ -10,7 +10,7 @@
     }
 
     div {
-        background-color: $bg-1;
+       @include default-shadow;
         padding: 10px;
     }
 

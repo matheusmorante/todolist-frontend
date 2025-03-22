@@ -10,6 +10,10 @@
     }
 }
 
+@mixin default-shadow {
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
 @mixin arrounded-border {
     border-radius: 12px;
 }

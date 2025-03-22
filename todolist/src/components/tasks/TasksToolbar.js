@@ -15,32 +15,31 @@ export default function TasksToolbar() {
 
     return (
         <div id='tasks-toolbar'>
-            <span>
+            <div>
                 Mostrar
                 <select onChange={(e) => setTasksPerPage(e.target.value)}>
                     <option value='5'>5</option>
-                    <option value='10'>10</option>
-                    <option value='20' selected>20</option>
+                    <option value='10' selected>10</option>
+                    <option value='20'>20</option>
                     <option value='50'>50</option>
                 </select>
                 tarefas por pagina
-            </span>
-            <span>
+            </div>
+            <div>
                 Filtrar por
                 <input
-                    placeholder='Filtrar por...'
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
                 />
-            </span>
-            <span>
+            </div>
+            <div>
                 Ordenação:
                 <select
                     onChange={(e) => setSortConfig({ ...sortConfig, key: e.target.value })}
                 >
+                    <option value='id' selected>Data de criação</option>
                     <option value='description'>Descriçao</option>
-                    <option value='date'>Data de criação</option>
-                    <option value='status'>Status</option>
+                    <option value='done'>Status</option>
                 </select>
                 <i
                     onClick={changeDirection}
@@ -49,7 +48,7 @@ export default function TasksToolbar() {
                             'alpha-down' : 'alpha-up-alt'}`
                     }
                 />
-            </span>
+            </div>
 
         </div>
     )

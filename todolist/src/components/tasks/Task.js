@@ -3,7 +3,7 @@ import { useTask } from '../../context/TaskContext';
 import dateNow from '../../utils/dateNow';
 
 export default function Task({ task }) {
-    const { setEditingTask, editTask, deleteTask } = useTask();
+    const { setEditingTask, editTask, deleteTask} = useTask();
 
     const toogleStatus = async () => {
         const newTask = {
@@ -29,8 +29,8 @@ export default function Task({ task }) {
                 <div id='date'>{dateNow(task.id)}</div>
             </div>
             <div id='actions'>
-                <i onClick={() => setEditingTask(task)} className="bi bi-pencil" />
-                <i onClick={onDeleteTask} className="bi bi-trash3" />
+                <i onClick={() => setEditingTask(task)} className="bi bi-pencil edit-btn" />
+                <i onClick={onDeleteTask} className="bi bi-trash3 delete-btn" />
             </div>
         </li>
 

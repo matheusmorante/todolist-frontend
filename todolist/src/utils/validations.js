@@ -1,13 +1,3 @@
-
-
-export const isMatching = (password, confirmPassword, errorText) => {
-    if (password !== confirmPassword) {
-        alert(errorText);
-        return false;
-    }
-    return true
-}
-
 export const descriptionError = description => {
     let error = null;
     if (description.length >= 65) {

@@ -6,24 +6,16 @@
     margin: 0;
 }
 
+body, i {
+    display: flex;
+}
+
 body {
-    margin: 0;
-    padding: 0;
     font-size: 16px;
-
-    .App {
-        &>* {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-
-        @include tablet() {
-            &>* {
-                padding-left: 100px;
-                padding-right: 100px;
-            }
-        }
-    }
+    font-family: "Roboto", sans-serif;
+    justify-content: center;
+    background-color: $bg;
+    color: $text;
 }
 
 ul {
@@ -31,43 +23,29 @@ ul {
 }
 
 i {
-    display: flex;
+    color: $icon;
     align-items: center;
     @include responsive-font(18px, 20px, 22px)
 }
 
 section {
-    margin: 10px 0;
-
-    h1 {
-        margin: 10px 0;
-    }
-}
-
-.overlay {
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.801);
-    z-index: 999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.fullscreen-form {
-    position: fixed;
-    inset: 0;
-    background-color: $bg-1;
     padding: 10px;
 
-    &>div:first-child {
-        display: flex;
-        justify-content: flex-end;
+    h1 {
+        text-align: center;
+        margin: 20px 0;
     }
-}
 
-.form {
-    
+    @include tablet() {
+        padding: 0 100px;
+    }
+
+    @include desktop() {
+        margin-top: 40px;
+        padding:  30px;
+        width: 500px;
+        background-color: $bg-2;
+    }
 }
 
 .alert {

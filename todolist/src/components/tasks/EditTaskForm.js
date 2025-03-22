@@ -3,7 +3,7 @@ import { useTask } from '../../context/TaskContext';
 import { descriptionError } from '../../utils/validations';
 
 export default function EditTaskForm() {
-    const { editingTask, setEditingTask, editTask, setError} = useTask();
+    const { editingTask, setEditingTask, editTask, setError, setSuccess} = useTask();
     const [description, setDescription] = useState(editingTask?.description);
 
     const submit = async () => {
@@ -16,10 +16,14 @@ export default function EditTaskForm() {
 
         if (error) {
             setError(error);
+            setTimeout(() => setError(null), 3000);
             return false
         }
-        
+    
         editTask(newTask);
+        setSuccess('Tarefa editada com sucesso!');
+        setTimeout(() => setSuccess(null), 3000);
+
         setError(null);
         setDescription('');
         setEditingTask(null);

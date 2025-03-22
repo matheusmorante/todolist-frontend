@@ -9,9 +9,9 @@ export const TaskProvider = ({ children }) => {
         return storedTasks ? JSON.parse(storedTasks) : [];
     });
     const [filter, setFilter] = useState('');
-    const [sortConfig, setSortConfig] = useState({ key: 'description', direction: 'asc' });
+    const [sortConfig, setSortConfig] = useState({ key: 'id', direction: 'asc' });
     const [editingTask, setEditingTask] = useState(null);
-    const [tasksPerPage, setTasksPerPage] = useState(20);
+    const [tasksPerPage, setTasksPerPage] = useState(10);
     const [currentPage, setCurrentPage] = useState(1);
     const [paginatedTasks, setPaginatedTasks] = useState([]);
     const [error, setError] = useState(null);
@@ -26,13 +26,11 @@ export const TaskProvider = ({ children }) => {
       }, [tasks]);
 
     useEffect(() => {
-        let filteredTasks = tasks;
-        if (filter) {
-            filteredTasks = handleTasks(tasks, filter, sortConfig);
-        }
+        const handledTasks = handleTasks(tasks, filter, sortConfig);
         const lastTaskOfPage = currentPage * tasksPerPage;
         const firstTaskOfPage = lastTaskOfPage - tasksPerPage;
-        const currentPagedTasks = filteredTasks.slice(firstTaskOfPage, lastTaskOfPage);
+        const currentPagedTasks = handledTasks.slice(firstTaskOfPage, lastTaskOfPage);
+
         setPaginatedTasks(currentPagedTasks)
     }, [tasks, filter, sortConfig, currentPage, tasksPerPage]);
 
@@ -44,8 +42,6 @@ export const TaskProvider = ({ children }) => {
 
     const editTask = (updatedTask) => {
         setTasks(tasks.map(task => task.id === updatedTask.id ? updatedTask : task))
-        setSuccess('Tarefa editada com sucesso!');
-        setTimeout(() => setSuccess(null), 3000);
     }
 
     const deleteTask = (taskId) => {
